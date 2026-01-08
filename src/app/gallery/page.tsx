@@ -23,7 +23,7 @@ export default function GalleryPage() {
     return (
         <MainLayout title="Gallery">
             <section className="container py-5">
-                <h2 className="fw-bold text-center text-purple mb-5">Gallery</h2>
+                <h2 className="section-title">Gallery</h2>
                 {loading ? (
                     <div className="text-center py-5">Loading...</div>
                 ) : (

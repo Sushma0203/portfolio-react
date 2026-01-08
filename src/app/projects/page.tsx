@@ -23,7 +23,7 @@ export default function ProjectsPage() {
     return (
         <MainLayout title="Projects">
             <section className="container py-5">
-                <h2 className="fw-bold text-center text-purple mb-5">My Projects</h2>
+                <h2 className="section-title">My Projects</h2>
                 {loading ? (
                     <div className="text-center py-5">Loading...</div>
                 ) : (

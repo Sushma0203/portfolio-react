@@ -28,7 +28,7 @@ export default function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg">
             <div className="container position-relative">
-                <Link className="navbar-brand fw-bold position-relative ps-3" href="/">
+                <Link className="navbar-brand fw-bold position-relative ps-3" href="/" style={{ color: isDark ? '#fff' : 'inherit' }}>
                     <img src="/img/sushmalogo.png" width="50" className="me-2" alt="Logo" /> Sushma Thapa
                 </Link>
                 <button

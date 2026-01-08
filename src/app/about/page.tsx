@@ -26,10 +26,10 @@ export default function About() {
     return (
         <MainLayout title="About">
             <section className="container py-5">
+                <h2 className="section-title">About Me</h2>
                 <div className="row justify-content-center">
                     <div className="col-lg-10">
                         <div className="glass-card p-5 shadow-lg fade-in">
-                            <h2 className="fw-bold text-purple mb-4">About Me</h2>
                             <p className="lead mb-4">{info.career_objective}</p>
 
                             <div className="row g-4 mt-2">
@@ -60,8 +60,8 @@ export default function About() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </MainLayout>
+                </div >
+            </section >
+        </MainLayout >
     );
 }

@@ -33,10 +33,10 @@ export default function ContactPage() {
     return (
         <MainLayout title="Contact">
             <section className="container py-5">
+                <h2 className="section-title">Get In Touch</h2>
                 <div className="row justify-content-center">
                     <div className="col-lg-6">
                         <div className="glass-card p-5 shadow-lg fade-in">
-                            <h2 className="fw-bold text-purple mb-4">Get In Touch</h2>
 
                             {status && (
                                 <div className={`alert ${status.type === 'success' ? 'alert-success' : 'alert-danger'} shadow-sm`}>

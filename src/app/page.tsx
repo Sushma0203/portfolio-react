@@ -43,21 +43,44 @@ export default function Home() {
 
   return (
     <MainLayout title="Home">
-      <section className="hero-section py-5 text-center">
-        <img
-          src={info.profile_image || '/img/profile.jpg'}
-          alt="Sushma Thapa"
-          className="profile-img mb-4 shadow-lg"
-          style={{ width: '150px', height: '150px', borderRadius: '50%', objectFit: 'cover' }}
-        />
-        <h1 className="fw-bold text-purple glow mb-2">{info.hero_title}</h1>
-        <h3 className="mb-3 text-secondary">
-          <span ref={el}></span>
-        </h3>
-        <Link href="/contact" className="btn btn-primary btn-lg shadow-sm">Hire Me / Contact</Link>
+      <section className="hero-section position-relative overflow-hidden">
+
+        <div className="container position-relative" style={{ zIndex: 2 }}>
+          <div className="row align-items-center">
+            <div className="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
+              <h4 className="text-accent fw-bold mb-3 ls-wide fade-in" style={{ animationDelay: '0.1s' }}>WELCOME TO MY WORLD</h4>
+              <h1 className="fw-bold text-purple glow mb-3 fade-in" style={{ fontSize: '4rem', animationDelay: '0.3s' }}>
+                {info.hero_title}
+              </h1>
+              <h2 className="mb-4 text-secondary fade-in" style={{ animationDelay: '0.5s' }}>
+                <span className="text-purple">I am a </span>
+                <span ref={el} className="fw-bold"></span>
+              </h2>
+              <div className="fade-in" style={{ animationDelay: '0.7s' }}>
+                <Link href="/contact" className="btn btn-primary btn-lg shadow-sm me-3">Let's Talk</Link>
+                <Link href="/projects" className="btn btn-outline-primary btn-lg">View Portfolio</Link>
+              </div>
+            </div>
+            <div className="col-lg-6 text-center position-relative">
+              <div className="hero-img-wrapper fade-in" style={{ animationDelay: '0.4s' }}>
+                <img
+                  src={info.profile_image || '/img/profile.jpg'}
+                  alt="Sushma Thapa"
+                  className="profile-img shadow-lg"
+                />
+                <div className="img-backdrop"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="hero-scroll-indicator">
+          <span></span>
+        </div>
       </section>
 
       <section className="container py-5">
+        <h2 className="section-title">Why Hire Me?</h2>
+
         <div className="row g-4">
           <div className="col-md-4">
             <div className="glass-card p-4 h-100 shadow-lg fade-in">
