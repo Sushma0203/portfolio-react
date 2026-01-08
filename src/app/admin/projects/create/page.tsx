@@ -1,0 +1,121 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import axios from 'axios';
+
+const ProjectCreate = () => {
+    const [data, setData] = useState<any>({
+        title: '',
+        description: '',
+        category: 'Web Development',
+        tech_stack: '',
+        image: null
+    });
+    const [processing, setProcessing] = useState(false);
+    const router = useRouter();
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setProcessing(true);
+
+        const formData = new FormData();
+        formData.append('title', data.title);
+        formData.append('description', data.description);
+        formData.append('category', data.category);
+
+        // Convert comma separated string to array for JSON storage
+        const techStackArray = data.tech_stack.split(',').map((s: string) => s.trim()).filter((s: string) => s !== '');
+        formData.append('tech_stack', JSON.stringify(techStackArray));
+
+        if (data.image) formData.append('image', data.image);
+
+        try {
+            await axios.post('/api/admin/projects', formData);
+            router.push('/admin/projects');
+        } catch (err) {
+            console.error(err);
+            alert('Error creating project');
+        } finally {
+            setProcessing(false);
+        }
+    };
+
+    return (
+        <div className="container-fluid">
+            <div className="mb-4">
+                <Link href="/admin/projects" className="btn btn-outline-secondary btn-sm mb-3">
+                    <i className="bi bi-arrow-left me-2"></i>Back to Projects
+                </Link>
+                <h2 className="fw-bold text-white">Add New Project</h2>
+            </div>
+
+            <div className="glass-card shadow-sm p-4 col-lg-8">
+                <form onSubmit={handleSubmit}>
+                    <div className="row g-3">
+                        <div className="col-md-8">
+                            <label className="form-label fw-bold text-white">Project Title</label>
+                            <input
+                                type="text"
+                                className="form-control bg-transparent text-white border-secondary"
+                                value={data.title}
+                                onChange={e => setData({ ...data, title: e.target.value })}
+                                required
+                            />
+                        </div>
+                        <div className="col-md-4">
+                            <label className="form-label fw-bold text-white">Category</label>
+                            <select
+                                className="form-select bg-transparent text-white border-secondary"
+                                value={data.category}
+                                onChange={e => setData({ ...data, category: e.target.value })}
+                            >
+                                <option className="bg-dark" value="Web Development">Web Development</option>
+                                <option className="bg-dark" value="Mobile App">Mobile App</option>
+                                <option className="bg-dark" value="UI/UX Design">UI/UX Design</option>
+                                <option className="bg-dark" value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div className="col-12">
+                            <label className="form-label fw-bold text-white">Description</label>
+                            <textarea
+                                className="form-control bg-transparent text-white border-secondary"
+                                rows={4}
+                                value={data.description}
+                                onChange={e => setData({ ...data, description: e.target.value })}
+                                required
+                            ></textarea>
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label fw-bold text-white">Tech Stack (comma separated)</label>
+                            <input
+                                type="text"
+                                className="form-control bg-transparent text-white border-secondary"
+                                placeholder="React, Node.js, Prisma"
+                                value={data.tech_stack}
+                                onChange={e => setData({ ...data, tech_stack: e.target.value })}
+                                required
+                            />
+                        </div>
+                        <div className="col-md-6">
+                            <label className="form-label fw-bold text-white">Thumbnail Image</label>
+                            <input
+                                type="file"
+                                className="form-control bg-transparent text-white border-secondary"
+                                onChange={e => setData({ ...data, image: e.target.files?.[0] })}
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <button type="submit" className="btn btn-success px-5 py-2 mt-4 shadow-sm" disabled={processing}>
+                        {processing ? 'Saving...' : 'Create Project'}
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export default ProjectCreate;

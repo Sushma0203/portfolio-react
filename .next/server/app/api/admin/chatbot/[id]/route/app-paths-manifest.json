@@ -1,0 +1,3 @@
+{
+  "/api/admin/chatbot/[id]/route": "app/api/admin/chatbot/[id]/route.js"
+}
