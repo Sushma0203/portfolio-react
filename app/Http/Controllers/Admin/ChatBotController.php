@@ -10,13 +10,7 @@ class ChatBotController extends Controller
 {
     public function index()
     {
-        $questions = ChatBotQuestion::latest()->get();
-        return view('admin.chatbot.index', compact('questions'));
-    }
-
-    public function create()
-    {
-        return view('admin.chatbot.create');
+        return response()->json(['responses' => ChatBotQuestion::all()]);
     }
 
     public function store(Request $request)
@@ -25,36 +19,29 @@ class ChatBotController extends Controller
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
         ]);
-
-        ChatBotQuestion::create($request->all());
-
-        return redirect()->route('admin.chatbot.index')->with('success', 'Question added successfully.');
+        $rule = ChatBotQuestion::create($request->all());
+        return response()->json($rule);
     }
 
     public function edit($id)
     {
-        $question = ChatBotQuestion::findOrFail($id);
-        return view('admin.chatbot.edit', compact('question'));
+        return response()->json(['response' => ChatBotQuestion::findOrFail($id)]);
     }
 
     public function update(Request $request, $id)
     {
+        $rule = ChatBotQuestion::findOrFail($id);
         $request->validate([
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
         ]);
-
-        $question = ChatBotQuestion::findOrFail($id);
-        $question->update($request->all());
-
-        return redirect()->route('admin.chatbot.index')->with('success', 'Question updated successfully.');
+        $rule->update($request->all());
+        return response()->json($rule);
     }
 
     public function destroy($id)
     {
-        $question = ChatBotQuestion::findOrFail($id);
-        $question->delete();
-
-        return redirect()->route('admin.chatbot.index')->with('success', 'Question deleted successfully.');
+        ChatBotQuestion::findOrFail($id)->delete();
+        return response()->json(['message' => 'Rule deleted']);
     }
 }

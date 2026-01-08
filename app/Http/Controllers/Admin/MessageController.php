@@ -10,21 +10,21 @@ class MessageController extends Controller
 {
     public function index()
     {
-        $messages = Contact::latest()->paginate(10);
-        return view('admin.messages.index', compact('messages'));
+        return response()->json(Contact::latest()->paginate(10));
     }
 
     public function show($id)
     {
         $message = Contact::findOrFail($id);
-        return view('admin.messages.show', compact('message'));
+        if (!$message->is_read) {
+            $message->update(['is_read' => true]);
+        }
+        return response()->json(['message' => $message]);
     }
 
     public function destroy($id)
     {
-        $message = Contact::findOrFail($id);
-        $message->delete();
-
-        return redirect()->route('admin.messages.index')->with('success', 'Message deleted successfully.');
+        Contact::findOrFail($id)->delete();
+        return response()->json(['message' => 'Message deleted successfully']);
     }
 }

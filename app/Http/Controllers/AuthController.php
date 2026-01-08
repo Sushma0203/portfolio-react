@@ -7,12 +7,6 @@ use App\Models\Admin;
 
 class AuthController extends Controller
 {
-    // Show login page
-    public function showLogin()
-    {
-        return view('auth.login');
-    }
-
     // Handle login (NO HASH)
     public function login(Request $request)
     {
@@ -23,19 +17,26 @@ class AuthController extends Controller
 
         $admin = Admin::where('username', $request->username)->first();
 
-        // Direct password match (NOT SECURE – only for testing)
         if ($admin && $request->password === $admin->password) {
-            session(['admin_username' => $admin->username]);
-            return redirect()->route('admin.dashboard');
+            $token = $admin->createToken('admin-token')->plainTextToken;
+            return response()->json([
+                'success' => true,
+                'token' => $token,
+                'user' => $admin
+            ]);
         }
 
-        return back()->withErrors(['admin_username' => 'Invalid credentials']);
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid credentials'
+        ], 401);
     }
 
-    // Logout
     public function logout(Request $request)
     {
-        $request->session()->forget('admin_username');
-        return redirect()->route('login');
+        if ($request->user()) {
+            $request->user()->currentAccessToken()->delete();
+        }
+        return response()->json(['success' => true]);
     }
 }

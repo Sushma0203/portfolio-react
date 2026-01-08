@@ -1,0 +1,210 @@
+:root {
+    --sidebar-width: 280px;
+    --primary-gradient: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    --sidebar-bg: var(--color-primary-dark);
+    --body-bg: #f8f9fa;
+    --card-shadow: var(--shadow-soft);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --color-primary: #6366f1;
+    --color-primary-dark: #4338ca;
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--body-bg);
+    color: #1e293b;
+    overflow-x: hidden;
+}
+
+#sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: var(--sidebar-bg);
+    color: white;
+    transition: var(--transition);
+    z-index: 1000;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#content {
+    margin-left: var(--sidebar-width);
+    padding: 2.5rem;
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+.sidebar-brand {
+    padding: 2.5rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.6);
+    padding: 1rem 2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-left: 4px solid transparent;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: #a855f7;
+}
+
+.nav-link i {
+    font-size: 1.25rem;
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-top {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    padding: 1.25rem 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+    background: var(--primary-gradient);
+    opacity: 0.9;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+@media (max-width: 992px) {
+    #sidebar {
+        left: calc(-1 * var(--sidebar-width));
+    }
+
+    #content {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+}
+
+.pagination .page-link i {
+    font-size: 0.9rem;
+}
+
+/* Dashboard Specific Styles */
+.text-gradient {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.icon-shape {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .icon-shape {
+    transform: rotate(10deg);
+}
+
+.clickable-card {
+    transition: transform 0.2s ease;
+    display: block;
+}
+
+.clickable-card:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+.glass-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+}
+
+.bg-primary-subtle {
+    background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+.text-primary {
+    color: #6366f1 !important;
+}
+
+.bg-success-subtle {
+    background-color: rgba(34, 197, 94, 0.1) !important;
+}
+
+.text-success {
+    color: #22c55e !important;
+}
+
+.bg-info-subtle {
+    background-color: rgba(6, 182, 212, 0.1) !important;
+}
+
+.text-info {
+    color: #06b6d4 !important;
+}
+
+.text-purple {
+    color: #6366f1;
+}

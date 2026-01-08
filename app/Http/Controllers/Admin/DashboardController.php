@@ -15,6 +15,10 @@ class DashboardController extends Controller
         $projectCount = Project::count();
         $messageCount = Contact::count();
 
-        return view('admin.dashboard', compact('galleryCount', 'projectCount', 'messageCount'));
+        return response()->json([
+            'galleryCount' => $galleryCount,
+            'projectCount' => $projectCount,
+            'messageCount' => $messageCount
+        ]);
     }
 }

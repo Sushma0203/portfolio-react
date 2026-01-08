@@ -10,37 +10,27 @@ class AboutInfoController extends Controller
 {
     public function edit()
     {
-        $info = AboutInfo::firstOrCreate([], [
-            'career_objective' => "To commit a professional job utilizing my field of study and gain work experience for future assiduous.",
-            'education_details' => [],
-            'technical_skills' => [],
-            'soft_skills' => [],
-            'achievements' => [],
-        ]);
-
-        return view('admin.about.edit', compact('info'));
+        $info = AboutInfo::firstOrCreate([]);
+        return response()->json(['info' => $info]);
     }
 
     public function update(Request $request)
     {
         $info = AboutInfo::first();
-
         $request->validate([
             'career_objective' => 'required|string',
-            'education_details' => 'nullable|array',
-            'technical_skills' => 'nullable|array',
-            'soft_skills' => 'nullable|array',
+            'technical_skills' => 'required|array',
+            'soft_skills' => 'required|array',
             'achievements' => 'nullable|array',
         ]);
 
         $info->update([
             'career_objective' => $request->career_objective,
-            'education_details' => $request->education_details,
             'technical_skills' => $request->technical_skills,
             'soft_skills' => $request->soft_skills,
             'achievements' => $request->achievements,
         ]);
 
-        return redirect()->back()->with('success', 'About information updated successfully.');
+        return response()->json(['info' => $info, 'message' => 'About info updated']);
     }
 }

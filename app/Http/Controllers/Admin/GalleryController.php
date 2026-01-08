@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+ Ame;
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
     public function index()
     {
-        $images = Gallery::latest()->paginate(12);
-        return view('admin.gallery.index', compact('images'));
-    }
-
-    public function create()
-    {
-        return view('admin.gallery.create');
+        return response()->json(Gallery::latest()->paginate(12));
     }
 
     public function store(Request $request)
@@ -33,13 +27,15 @@ class GalleryController extends Controller
             $image->move(public_path('img/gallery'), $name);
             $path = 'img/gallery/' . $name;
 
-            Gallery::create([
+            $gallery = Gallery::create([
                 'image_path' => $path,
                 'title' => $request->title,
             ]);
+            
+            return response()->json($gallery);
         }
 
-        return redirect()->route('admin.gallery.index')->with('success', 'Image uploaded successfully.');
+        return response()->json(['message' => 'Image upload failed'], 400);
     }
 
     public function destroy($id)
@@ -50,6 +46,6 @@ class GalleryController extends Controller
         }
         $image->delete();
 
-        return redirect()->route('admin.gallery.index')->with('success', 'Image deleted successfully.');
+        return response()->json(['message' => 'Image deleted successfully']);
     }
 }

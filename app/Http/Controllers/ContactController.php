@@ -18,9 +18,9 @@ class ContactController extends Controller
         try {
             Contact::create($request->only('name', 'email', 'message'));
 
-            return response()->json(['success' => true]);
+            return redirect()->back()->with('success', 'Message sent successfully!');
         } catch (\Exception $e) {
-            return response()->json(['success' => false]);
+            return redirect()->back()->with('error', 'Error sending message!');
         }
     }
 }

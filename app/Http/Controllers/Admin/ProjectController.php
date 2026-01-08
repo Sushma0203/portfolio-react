@@ -10,13 +10,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::latest()->paginate(10);
-        return view('admin.projects.index', compact('projects'));
-    }
-
-    public function create()
-    {
-        return view('admin.projects.create');
+        return response()->json(Project::latest()->paginate(10));
     }
 
     public function store(Request $request)
@@ -37,7 +31,7 @@ class ProjectController extends Controller
             $path = 'img/project/' . $name;
         }
 
-        Project::create([
+        $project = Project::create([
             'title' => $request->title,
             'image_path' => $path,
             'description' => $request->description,
@@ -45,13 +39,17 @@ class ProjectController extends Controller
             'tech_stack' => $request->tech_stack,
         ]);
 
-        return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
+        return response()->json($project);
+    }
+
+    public function show($id)
+    {
+        return response()->json(['project' => Project::findOrFail($id)]);
     }
 
     public function edit($id)
     {
-        $project = Project::findOrFail($id);
-        return view('admin.projects.edit', compact('project'));
+        return response()->json(['project' => Project::findOrFail($id)]);
     }
 
     public function update(Request $request, $id)
@@ -67,11 +65,9 @@ class ProjectController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete old image
             if ($project->image_path && file_exists(public_path($project->image_path))) {
                 unlink(public_path($project->image_path));
             }
-
             $image = $request->file('image');
             $name = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img/project'), $name);
@@ -85,7 +81,7 @@ class ProjectController extends Controller
             'tech_stack' => $request->tech_stack,
         ]);
 
-        return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
+        return response()->json($project);
     }
 
     public function destroy($id)
@@ -96,6 +92,6 @@ class ProjectController extends Controller
         }
         $project->delete();
 
-        return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
+        return response()->json(['message' => 'Project deleted successfully']);
     }
 }
