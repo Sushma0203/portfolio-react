@@ -1,6 +1,5 @@
 import React from 'react';
 import Stars from './Stars';
-
 export default function Footer() {
     return (
         <footer className="position-relative">
@@ -11,7 +10,7 @@ export default function Footer() {
                     <a href="mailto:sushmat952@email.com" className="mx-3 text-white"><i className="bi bi-envelope-fill fs-3"></i></a>
                 </div>
                 <p className="mb-0 opacity-75">&copy; {new Date().getFullYear()} Sushma Thapa | All Rights Reserved</p>
-                <p className="small mt-2 text-muted">Designed with ✨ by Antigravity</p>
+                <p className="small mt-2 opacity-50">Crafted with Precision by Antigravity</p>
             </div>
 
             <Stars className="footer-stars" count={60} />

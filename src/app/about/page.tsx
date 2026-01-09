@@ -28,7 +28,7 @@ export default function About() {
             <section className="container py-5">
                 <h2 className="section-title">About Me</h2>
                 <div className="row justify-content-center">
-                    <div className="col-lg-10">
+                    <div className="col-lg-10 reveal active">
                         <div className="glass-card p-5 shadow-lg fade-in">
                             <p className="lead mb-4">{info.career_objective}</p>
 

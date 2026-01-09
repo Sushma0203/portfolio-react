@@ -8,7 +8,7 @@ interface StarsProps {
     style?: React.CSSProperties;
 }
 
-export default function Stars({ count = 100, className = 'stars', style = {} }: StarsProps) {
+export default function Stars({ count = 80, className = 'stars', style = {} }: StarsProps) {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

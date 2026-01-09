@@ -35,7 +35,7 @@ export default function ContactPage() {
             <section className="container py-5">
                 <h2 className="section-title">Get In Touch</h2>
                 <div className="row justify-content-center">
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 reveal active">
                         <div className="glass-card p-5 shadow-lg fade-in">
 
                             {status && (

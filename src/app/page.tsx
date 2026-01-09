@@ -49,16 +49,16 @@ export default function Home() {
           <div className="row align-items-center">
             <div className="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
               <h4 className="text-accent fw-bold mb-3 ls-wide fade-in" style={{ animationDelay: '0.1s' }}>WELCOME TO MY WORLD</h4>
-              <h1 className="fw-bold text-purple glow mb-3 fade-in" style={{ fontSize: '4rem', animationDelay: '0.3s' }}>
+              <h1 className="fw-bold text-purple-gradient mb-3 fade-in" style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)', animationDelay: '0.3s', letterSpacing: '-4px' }}>
                 {info.hero_title}
               </h1>
               <h2 className="mb-4 text-secondary fade-in" style={{ animationDelay: '0.5s' }}>
-                <span className="text-purple">I am a </span>
-                <span ref={el} className="fw-bold"></span>
+                <span className="text-purple-gradient fw-bold">I am a </span>
+                <span ref={el} className="text-primary fw-bold"></span>
               </h2>
               <div className="fade-in" style={{ animationDelay: '0.7s' }}>
-                <Link href="/contact" className="btn btn-primary btn-lg shadow-sm me-3">Let's Talk</Link>
-                <Link href="/projects" className="btn btn-outline-primary btn-lg">View Portfolio</Link>
+                <Link href="/contact" className="btn btn-premium btn-lg shadow-md me-3 rounded-4 px-5 py-3 fw-bold">Let's Talk</Link>
+                <Link href="/projects" className="btn btn-outline-primary btn-lg rounded-4 px-5 py-3 fw-bold">My Portfolio</Link>
               </div>
             </div>
             <div className="col-lg-6 text-center position-relative">

@@ -27,9 +27,9 @@ export default function ProjectsPage() {
                 {loading ? (
                     <div className="text-center py-5">Loading...</div>
                 ) : (
-                    <div className="row g-4">
+                    <div className="row g-5">
                         {projects.map((project, i) => (
-                            <div key={i} className="col-lg-4 col-md-6">
+                            <div key={i} className={`col-lg-4 col-md-6 reveal active stagger-${(i % 4) + 1}`}>
                                 <div className="glass-card h-100 shadow-sm card-hover p-4">
                                     <img
                                         src={project.image_path.startsWith('/') ? project.image_path : '/' + project.image_path}

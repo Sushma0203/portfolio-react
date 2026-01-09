@@ -27,9 +27,9 @@ export default function GalleryPage() {
                 {loading ? (
                     <div className="text-center py-5">Loading...</div>
                 ) : (
-                    <div className="row g-4">
+                    <div className="row g-5">
                         {images.map((img, i) => (
-                            <div key={i} className="col-md-4 col-sm-6">
+                            <div key={i} className={`col-md-4 col-sm-6 reveal active stagger-${(i % 4) + 1}`}>
                                 <div className="glass-card h-100 overflow-hidden shadow-sm card-hover">
                                     <img
                                         src={img.image_path.startsWith('/') ? img.image_path : '/' + img.image_path}
