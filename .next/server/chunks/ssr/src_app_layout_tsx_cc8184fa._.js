@@ -1,3 +1,0 @@
-module.exports=[27572,a=>{"use strict";var b=a.i(7997);function c({children:a}){return(0,b.jsxs)("html",{lang:"en",children:[(0,b.jsxs)("head",{children:[(0,b.jsx)("link",{href:"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",rel:"stylesheet"}),(0,b.jsx)("link",{href:"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css",rel:"stylesheet"})]}),(0,b.jsxs)("body",{children:[a,(0,b.jsx)("script",{src:"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js",async:!0})]})]})}a.s(["default",()=>c,"metadata",0,{title:"Sushma Thapa - Portfolio",description:"Personal portfolio of Sushma Thapa"}])}];
-
-//# sourceMappingURL=src_app_layout_tsx_cc8184fa._.js.map
