@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import clsx from 'clsx';
+import { MessageCircle, X, Send, Minus } from 'lucide-react';
 
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
@@ -74,60 +76,53 @@ export default function ChatWidget() {
         width: '350px',
         height: '500px',
         backdropFilter: 'blur(15px)',
-        borderRadius: '20px',
+        borderRadius: '24px',
         display: isOpen ? 'flex' : 'none',
         flexDirection: 'column',
-        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+        boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
         overflow: 'hidden',
-        background: 'rgba(255, 255, 255, 0.9)',
+        background: 'rgba(255, 255, 255, 0.85)',
+        border: '1px solid rgba(0, 0, 0, 0.05)',
         zIndex: 10000,
+        transition: 'all 0.3s ease',
     };
 
     return (
-        <div id="chat-widget" style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}>
+        <div id="chat-widget" className="fixed bottom-6 right-6 z-[9999]">
             <button
                 id="chat-button"
                 onClick={toggleChat}
-                style={{
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '50%',
-                    color: 'white',
-                    border: 'none',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '24px',
-                    cursor: 'pointer',
-                    transition: 'transform 0.3s',
-                    backgroundColor: '#6f42c1'
-                }}
+                className="w-16 h-16 rounded-full bg-purple-600 hover:bg-purple-700 text-white flex items-center justify-center shadow-lg hover:shadow-purple-500/40 transition-all duration-300 hover:scale-110 active:scale-95"
             >
-                <i className="bi bi-chat-dots-fill"></i>
+                {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
             </button>
 
-            <div id="chat-window" style={chatWindowStyle} className="chat-window-container">
-                <div id="chat-header" style={{ padding: '15px', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#6f42c1' }}>
-                    <span className="fw-bold">Chat with me</span>
-                    <button className="btn btn-sm text-white" onClick={toggleChat}><i className="bi bi-x-lg"></i></button>
+            <div id="chat-window" style={chatWindowStyle} className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-black/5 dark:border-white/10">
+                <div id="chat-header" className="p-4 bg-purple-600 text-white flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                        <span className="font-bold">Chat with me</span>
+                    </div>
+                    <button className="p-1 hover:bg-white/20 rounded-full transition-colors" onClick={toggleChat}>
+                        <Minus size={20} />
+                    </button>
                 </div>
 
-                <div id="chat-messages" style={{ flex: 1, padding: '15px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div id="chat-messages" className="flex-1 p-4 overflow-y-auto flex flex-col gap-3">
                     {messages.length === 0 ? (
-                        <div className="message admin" style={{ alignSelf: 'flex-start', background: '#e9ecef', color: '#333', padding: '8px 15px', borderRadius: '15px', borderBottomLeftRadius: '2px', maxWidth: '80%' }}>
+                        <div className="self-start bg-gray-100 dark:bg-slate-800 text-gray-800 dark:text-gray-200 p-3 rounded-2xl rounded-bl-sm max-w-[85%] text-sm shadow-sm">
                             Hello! I am Sushma. How can I help you today?
                         </div>
                     ) : (
                         messages.map((msg, index) => (
                             <div
                                 key={index}
-                                className={`message ${msg.is_admin ? 'admin' : 'user'}`}
-                                style={msg.is_admin ? {
-                                    alignSelf: 'flex-start', background: '#e9ecef', color: '#333', padding: '8px 15px', borderRadius: '15px', borderBottomLeftRadius: '2px', maxWidth: '80%'
-                                } : {
-                                    alignSelf: 'flex-end', background: '#6f42c1', color: 'white', padding: '8px 15px', borderRadius: '15px', borderBottomRightRadius: '2px', maxWidth: '80%'
-                                }}
+                                className={clsx(
+                                    "p-3 rounded-2xl max-w-[85%] text-sm shadow-sm transition-all animate-in fade-in slide-in-from-bottom-2",
+                                    msg.is_admin
+                                        ? "self-start bg-gray-100 dark:bg-slate-800 text-gray-800 dark:text-gray-200 rounded-bl-sm"
+                                        : "self-end bg-purple-600 text-white rounded-br-sm"
+                                )}
                             >
                                 {msg.message}
                             </div>
@@ -136,18 +131,22 @@ export default function ChatWidget() {
                     <div ref={messagesEndRef} />
                 </div>
 
-                <div id="chat-input-area" style={{ padding: '15px', borderTop: '1px solid rgba(0,0,0,0.1)', display: 'flex', gap: '10px' }}>
+                <div id="chat-input-area" className="p-4 bg-white/50 dark:bg-black/20 border-t border-black/5 dark:border-white/10 flex gap-2">
                     <input
                         type="text"
                         id="chat-input"
                         placeholder="Type a message..."
+                        className="flex-1 bg-transparent border-none focus:ring-0 text-sm py-1"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         onKeyPress={handleKeyPress}
-                        style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none' }}
                     />
-                    <button className="btn btn-link p-0 text-purple" onClick={sendMessage} style={{ color: '#6f42c1' }}>
-                        <i className="bi bi-send-fill"></i>
+                    <button
+                        className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center hover:bg-purple-700 transition-colors disabled:opacity-50"
+                        onClick={sendMessage}
+                        disabled={!inputText.trim()}
+                    >
+                        <Send size={14} />
                     </button>
                 </div>
             </div>

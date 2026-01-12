@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import React from 'react';
 import CustomCursor from '@/components/ui/CustomCursor';
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: "Sushma Thapa - Portfolio",
@@ -16,7 +17,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="antialiased selection:bg-purple-500/30 selection:text-purple-200">
-        <CustomCursor />
         {children}
       </body>
     </html>

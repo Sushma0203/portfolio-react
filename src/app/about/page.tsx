@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import MainLayout from '@/components/MainLayout';
 import axios from 'axios';
+import { Code2, Users, Trophy } from 'lucide-react';
 
 export default function About() {
     const [info, setInfo] = useState<any>(null);
@@ -34,7 +35,7 @@ export default function About() {
 
                             <div className="row g-4 mt-2">
                                 <div className="col-md-6">
-                                    <h4 className="fw-bold mb-3"><i className="bi bi-code-slash me-2"></i>Technical Skills</h4>
+                                    <h4 className="fw-bold mb-3 flex items-center gap-2 font-heading"><Code2 className="text-purple-500" />Technical Skills</h4>
                                     <ul className="list-group list-group-flush bg-transparent">
                                         {info.technical_skills?.map((skill: string, i: number) => (
                                             <li key={i} className="list-group-item bg-transparent border-0 ps-0 text-secondary">{skill}</li>
@@ -42,7 +43,7 @@ export default function About() {
                                     </ul>
                                 </div>
                                 <div className="col-md-6">
-                                    <h4 className="fw-bold mb-3"><i className="bi bi-people-fill me-2"></i>Soft Skills</h4>
+                                    <h4 className="fw-bold mb-3 flex items-center gap-2 font-heading"><Users className="text-purple-500" />Soft Skills</h4>
                                     <ul className="list-group list-group-flush bg-transparent">
                                         {info.soft_skills?.map((skill: string, i: number) => (
                                             <li key={i} className="list-group-item bg-transparent border-0 ps-0 text-secondary">{skill}</li>
@@ -50,7 +51,7 @@ export default function About() {
                                     </ul>
                                 </div>
                                 <div className="col-12 mt-4">
-                                    <h4 className="fw-bold mb-3"><i className="bi bi-trophy-fill me-2"></i>Achievements</h4>
+                                    <h4 className="fw-bold mb-3 flex items-center gap-2 font-heading"><Trophy className="text-purple-500" />Achievements</h4>
                                     <ul className="list-group list-group-flush bg-transparent">
                                         {info.achievements?.map((achievement: string, i: number) => (
                                             <li key={i} className="list-group-item bg-transparent border-0 ps-0 text-secondary">{achievement}</li>

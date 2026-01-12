@@ -55,13 +55,13 @@
 body {
     @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-body antialiased;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Dark Mode Overrides */
 .dark body {
     background-color: #030014;
-    /* Deep space black */
+    /* Standardized Deep Space Black */
     color: #f8fafc;
 }
 
@@ -70,6 +70,7 @@ body {
     --foreground: 0 0% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
+    --primary: 263.4 70% 50.4%;
 }
 
 /* Custom Utilities */
@@ -161,8 +162,36 @@ body {
         @apply text-purple-600 dark:text-purple-400;
     }
 
+    .text-secondary {
+        @apply text-gray-700 dark:text-gray-400;
+    }
+
+    .section-title {
+        @apply text-4xl md:text-5xl font-bold font-heading mb-16 text-center text-gray-900 dark:text-white tracking-tight;
+    }
+
+    .lead {
+        @apply text-xl text-gray-800 dark:text-gray-300;
+    }
+
     .justify-content-center {
         @apply justify-center;
+    }
+
+    /* Reveal Animations */
+    .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .glass-card {
+        @apply bg-white/60 dark:bg-white/5 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl rounded-3xl overflow-hidden;
     }
 }
 

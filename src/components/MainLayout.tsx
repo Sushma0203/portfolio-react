@@ -20,7 +20,7 @@ export default function MainLayout({ children, title }: MainLayoutProps) {
     return (
         <div className="flex flex-col min-h-screen bg-transparent text-foreground font-body">
             <Navbar />
-            <div className="flex-grow pt-24">
+            <div className="flex-grow pt-0 md:pt-0">
                 {children}
             </div>
             <Footer />

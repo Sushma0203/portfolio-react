@@ -41,7 +41,7 @@ export default function ProjectsPage() {
                                     <p className="text-secondary small mb-3">{project.description}</p>
                                     <div className="d-flex flex-wrap gap-2">
                                         {Array.isArray(project.tech_stack) && project.tech_stack.map((tech: string, j: number) => (
-                                            <span key={j} className="badge bg-light text-purple border">{tech}</span>
+                                            <span key={j} className="badge bg-purple-500/5 dark:bg-white/10 text-purple-700 dark:text-purple-300 border border-purple-500/10 dark:border-white/10">{tech}</span>
                                         ))}
                                     </div>
                                 </div>

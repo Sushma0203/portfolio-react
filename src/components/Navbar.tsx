@@ -55,12 +55,12 @@ export default function Navbar() {
         >
             <div className={clsx(
                 "container mx-auto px-6 rounded-2xl transition-all duration-300",
-                scrolled ? "bg-white/10 dark:bg-black/50 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg py-3" : "bg-transparent"
+                scrolled ? "bg-white/80 dark:bg-black/50 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg py-3" : "bg-transparent"
             )}>
                 <div className="flex items-center justify-between">
                     <Link href="/" className="relative z-50 group">
                         <div className="flex items-center gap-2">
-                            <span className="text-2xl font-bold font-heading bg-gradient-to-r from-purple-600 to-blue-500 dark:from-white dark:to-white/60 bg-clip-text text-transparent group-hover:to-purple-400 transition-all duration-300">
+                            <span className="text-2xl font-bold font-heading bg-gradient-to-r from-purple-700 to-indigo-600 dark:from-white dark:to-white/60 bg-clip-text text-transparent group-hover:scale-105 transition-all duration-300">
                                 Sushma.
                             </span>
                         </div>
@@ -74,7 +74,7 @@ export default function Navbar() {
                                 href={link.path}
                                 className={clsx(
                                     "relative text-sm font-medium transition-colors hover:text-purple-500 dark:hover:text-purple-400",
-                                    pathname === link.path ? "text-purple-600 dark:text-purple-400" : "text-gray-600 dark:text-gray-300"
+                                    pathname === link.path ? "text-purple-600 dark:text-purple-400" : "text-gray-800 dark:text-gray-300"
                                 )}
                             >
                                 {pathname === link.path && (
