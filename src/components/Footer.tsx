@@ -36,9 +36,7 @@ export default function Footer() {
                 <p className="text-gray-900 dark:text-gray-400 mb-2 font-medium">
                     &copy; {new Date().getFullYear()} Sushma Thapa. All Rights Reserved.
                 </p>
-                <p className="text-sm text-gray-700 dark:text-gray-600">
-                    Designed & Built with <span className="text-purple-600 dark:text-purple-500 font-bold">Passion</span>
-                </p>
+                
             </div>
 
             <Stars className="absolute inset-0 w-full h-full pointer-events-none opacity-30" count={40} />
