@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { LogOut, ExternalLink } from 'lucide-react';
 
 interface TopbarProps {
     title: string;
@@ -10,11 +11,6 @@ interface TopbarProps {
 const Topbar = ({ title }: TopbarProps) => {
     const router = useRouter();
     const adminName = 'Admin';
-
-    const toggleSidebar = () => {
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) sidebar.classList.toggle('active');
-    };
 
     const handleLogout = async () => {
         try {
@@ -26,17 +22,34 @@ const Topbar = ({ title }: TopbarProps) => {
     };
 
     return (
-        <div className="navbar-top">
-            <div className="d-flex align-items-center gap-3">
-                <button className="btn btn-light d-lg-none" id="sidebarToggle" onClick={toggleSidebar}>
-                    <i className="bi bi-list fs-4"></i>
+        <div className="flex items-center justify-between p-6 bg-transparent">
+            <h1 className="text-2xl font-bold font-heading text-slate-800 tracking-tight drop-shadow-sm">{title}</h1>
+
+            <div className="flex items-center gap-4">
+                <div className="hidden md:flex items-center gap-3 bg-white/50 px-4 py-2 rounded-full border border-pink-200 backdrop-blur-md shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center text-xs font-bold text-white shadow-md shadow-pink-300/50">
+                        {adminName[0]}
+                    </div>
+                    <span className="text-sm font-bold text-slate-700">Welcome, {adminName}</span>
+                </div>
+
+                <a
+                    href="/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2 rounded-full bg-white/50 hover:bg-white text-pink-500 hover:text-rose-600 transition-colors border border-pink-200 shadow-sm"
+                    title="View Site"
+                >
+                    <ExternalLink size={20} />
+                </a>
+
+                <button
+                    onClick={handleLogout}
+                    className="p-2 rounded-full bg-red-100/50 hover:bg-red-100 text-red-500 hover:text-red-600 transition-colors shadow-sm"
+                    title="Logout"
+                >
+                    <LogOut size={20} />
                 </button>
-                <h5 className="mb-0 fw-bold d-none d-sm-block">{title}</h5>
-            </div>
-            <div className="d-flex align-items-center">
-                <span className="me-3 text-muted small d-none d-md-inline">Welcome, {adminName}</span>
-                <a href="/" target="_blank" rel="noreferrer" className="btn btn-sm btn-outline-primary border-2 px-3 me-2 text-decoration-none">View Site</a>
-                <button onClick={handleLogout} className="btn btn-sm btn-outline-danger border-2 px-3">Logout</button>
             </div>
         </div>
     );

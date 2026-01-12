@@ -2,67 +2,147 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Stars from './Stars';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Moon, Sun } from 'lucide-react';
+import clsx from 'clsx';
 
 export default function Navbar() {
     const pathname = usePathname();
-    const [isDark, setIsDark] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isDark, setIsDark] = useState(true);
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-            setIsDark(true);
-        }
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+
+        // Initialize dark mode from local storage or default to true
+        const savedMode = localStorage.getItem('theme');
+        const initialDark = savedMode ? savedMode === 'dark' : true;
+        setIsDark(initialDark);
+        document.documentElement.classList.toggle('dark', initialDark);
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleDarkMode = () => {
-        document.body.classList.toggle('dark-mode');
-        const isNowDark = document.body.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isNowDark.toString());
-        setIsDark(isNowDark);
+    const toggleTheme = () => {
+        const newMode = !isDark;
+        setIsDark(newMode);
+        localStorage.setItem('theme', newMode ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', newMode);
     };
 
-    const isActive = (path: string) => pathname === path ? 'active' : '';
+    const navLinks = [
+        { name: 'Home', path: '/' },
+        { name: 'About', path: '/about' },
+        { name: 'Projects', path: '/projects' },
+        { name: 'Gallery', path: '/gallery' },
+        { name: 'Contact', path: '/contact' },
+    ];
 
     return (
-        <nav className="navbar navbar-expand-lg">
-            <div className="container position-relative">
-                <Link className="navbar-brand fw-bold position-relative" href="/" style={{ color: isDark ? '#fff' : 'inherit' }}>
-                    <img src="/img/sushmalogo.png" width="45" className="me-2" alt="Logo" /> Sushma Thapa
-                </Link>
-                <button
-                    className="navbar-toggler position-relative me-3"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item"><Link className={`nav-link ${isActive('/')}`} href="/">Home</Link></li>
-                        <li className="nav-item"><Link className={`nav-link ${isActive('/about')}`} href="/about">About</Link></li>
-                        <li className="nav-item"><Link className={`nav-link ${isActive('/projects')}`} href="/projects">Projects</Link></li>
-                        <li className="nav-item"><Link className={`nav-link ${isActive('/gallery')}`} href="/gallery">Gallery</Link></li>
-                        <li className="nav-item"><Link className={`nav-link ${isActive('/contact')}`} href="/contact">Contact</Link></li>
+        <motion.nav
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 0.5 }}
+            className={clsx(
+                'fixed top-0 w-full z-50 transition-all duration-300',
+                scrolled ? 'py-4' : 'py-6'
+            )}
+        >
+            <div className={clsx(
+                "container mx-auto px-6 rounded-2xl transition-all duration-300",
+                scrolled ? "bg-white/10 dark:bg-black/50 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg py-3" : "bg-transparent"
+            )}>
+                <div className="flex items-center justify-between">
+                    <Link href="/" className="relative z-50 group">
+                        <div className="flex items-center gap-2">
+                            <span className="text-2xl font-bold font-heading bg-gradient-to-r from-purple-600 to-blue-500 dark:from-white dark:to-white/60 bg-clip-text text-transparent group-hover:to-purple-400 transition-all duration-300">
+                                Sushma.
+                            </span>
+                        </div>
+                    </Link>
 
-                        <li className="nav-item">
-                            <button
-                                id="darkModeBtn"
-                                className="nav-link bg-transparent border-0"
-                                onClick={toggleDarkMode}
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex items-center gap-8">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.path}
+                                href={link.path}
+                                className={clsx(
+                                    "relative text-sm font-medium transition-colors hover:text-purple-500 dark:hover:text-purple-400",
+                                    pathname === link.path ? "text-purple-600 dark:text-purple-400" : "text-gray-600 dark:text-gray-300"
+                                )}
                             >
-                                {isDark ? 'Light Mode' : 'Dark Mode'}
-                            </button>
-                        </li>
-                    </ul>
+                                {pathname === link.path && (
+                                    <motion.span
+                                        layoutId="underline"
+                                        className="absolute left-0 top-full block h-[1px] w-full bg-purple-600 dark:bg-purple-400 mt-1"
+                                    />
+                                )}
+                                {link.name}
+                            </Link>
+                        ))}
+
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-700 dark:text-gray-200"
+                        >
+                            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                        </button>
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden flex items-center gap-4">
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-700 dark:text-gray-200"
+                        >
+                            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                        </button>
+                        <button
+                            className="z-50 text-gray-800 dark:text-white"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? <X /> : <Menu />}
+                        </button>
+                    </div>
                 </div>
-                <Stars className="stars" />
             </div>
-        </nav>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="fixed inset-0 z-40 bg-white/95 dark:bg-black/95 backdrop-blur-xl md:hidden flex items-center justify-center text-center"
+                    >
+                        <div className="flex flex-col items-center gap-8">
+                            {navLinks.map((link, i) => (
+                                <motion.div
+                                    key={link.path}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                >
+                                    <Link
+                                        href={link.path}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="text-2xl font-bold text-gray-800 dark:text-white hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.nav>
     );
 }

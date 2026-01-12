@@ -18,11 +18,11 @@ export default function MainLayout({ children, title }: MainLayoutProps) {
     }, [title]);
 
     return (
-        <div className="main-layout">
+        <div className="flex flex-col min-h-screen bg-transparent text-foreground font-body">
             <Navbar />
-            <main className="transition-fade">
+            <div className="flex-grow pt-24">
                 {children}
-            </main>
+            </div>
             <Footer />
             <ChatWidget />
         </div>

@@ -19,7 +19,8 @@ export default function Stars({ count = 80, className = 'stars', style = {} }: S
 
         for (let i = 0; i < count; i++) {
             const star = document.createElement('div');
-            star.classList.add(className === 'footer-stars' ? 'footer-star' : 'star');
+            const isFooter = className.includes('footer-stars');
+            star.classList.add(isFooter ? 'footer-star' : 'star');
             star.style.top = Math.random() * 100 + '%';
             star.style.left = Math.random() * 100 + '%';
 
@@ -27,7 +28,7 @@ export default function Stars({ count = 80, className = 'stars', style = {} }: S
             star.style.width = star.style.height = size + 'px';
 
             star.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            if (className === 'footer-stars') {
+            if (isFooter) {
                 star.style.animationDuration += ', ' + (Math.random() * 4 + 2) + 's';
             }
 

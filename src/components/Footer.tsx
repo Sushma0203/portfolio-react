@@ -1,19 +1,47 @@
+'use client';
+
 import React from 'react';
 import Stars from './Stars';
+import { Linkedin, Github, Mail } from 'lucide-react';
+
 export default function Footer() {
     return (
-        <footer className="position-relative">
-            <div className="container position-relative" style={{ zIndex: 10 }}>
-                <div className="mb-4">
-                    <a href="https://www.linkedin.com/in/sushma-thapa-015574275" target="_blank" rel="noreferrer" className="mx-3 text-white"><i className="bi bi-linkedin fs-3"></i></a>
-                    <a href="https://github.com/Sushma0203" target="_blank" rel="noreferrer" className="mx-3 text-white"><i className="bi bi-github fs-3"></i></a>
-                    <a href="mailto:sushmat952@email.com" className="mx-3 text-white"><i className="bi bi-envelope-fill fs-3"></i></a>
+        <footer className="relative py-12 border-t border-white/10 bg-black/40 backdrop-blur-lg">
+            <div className="container mx-auto px-6 relative z-10 text-center">
+                <div className="flex justify-center items-center gap-8 mb-8">
+                    <a
+                        href="https://www.linkedin.com/in/sushma-thapa-015574275"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                        <Linkedin size={24} />
+                    </a>
+                    <a
+                        href="https://github.com/Sushma0203"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                        <Github size={24} />
+                    </a>
+                    <a
+                        href="mailto:sushmat952@email.com"
+                        className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                        <Mail size={24} />
+                    </a>
                 </div>
-                <p className="mb-0 opacity-75">&copy; {new Date().getFullYear()} Sushma Thapa | All Rights Reserved</p>
-                <p className="small mt-2 opacity-50">Crafted with Precision by Antigravity</p>
+
+                <p className="text-gray-500 mb-2">
+                    &copy; {new Date().getFullYear()} Sushma Thapa. All Rights Reserved.
+                </p>
+                <p className="text-sm text-gray-600">
+                    Designed & Built with <span className="text-purple-500">Passion</span>
+                </p>
             </div>
 
-            <Stars className="footer-stars" count={60} />
+            <Stars className="absolute inset-0 w-full h-full pointer-events-none opacity-30" count={40} />
         </footer>
     );
 }
