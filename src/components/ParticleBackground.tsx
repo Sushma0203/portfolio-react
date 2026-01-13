@@ -39,43 +39,33 @@ const ParticleBackground: React.FC = () => {
 
             geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
 
-            // Create a simple circular sprite since snowflakes are missing
-            const createCircleTexture = () => {
-                const canvas = document.createElement('canvas');
-                canvas.width = 64;
-                canvas.height = 64;
-                const context = canvas.getContext('2d');
-                if (context) {
-                    const gradient = context.createRadialGradient(32, 32, 0, 32, 32, 32);
-                    gradient.addColorStop(0, 'rgba(255,255,255,1)');
-                    gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
-                    gradient.addColorStop(0.4, 'rgba(255,255,255,0.2)');
-                    gradient.addColorStop(1, 'rgba(255,255,255,0)');
-                    context.fillStyle = gradient;
-                    context.fillRect(0, 0, 64, 64);
-                }
-                const texture = new THREE.CanvasTexture(canvas);
-                texture.colorSpace = THREE.SRGBColorSpace;
-                return texture;
-            };
+            const textureLoader = new THREE.TextureLoader();
+            const snowflake1 = textureLoader.load('/img/snowflake1.png');
+            const snowflake2 = textureLoader.load('/img/snowflake2.png');
+            const snowflake3 = textureLoader.load('/img/snowflake3.png');
+            const snowflake4 = textureLoader.load('/img/snowflake4.png');
+            const snowflake5 = textureLoader.load('/img/snowflake5.png');
+            const snowflake7 = textureLoader.load('/img/snowflake7_alpha.png');
 
-            const circleTexture = createCircleTexture();
+            const textures = [snowflake1, snowflake2, snowflake3, snowflake4, snowflake5, snowflake7];
 
-            const parameters = [
-                [[1.0, 0.2, 0.5], 20],
-                [[0.95, 0.1, 0.5], 15],
-                [[0.90, 0.05, 0.5], 10],
-                [[0.85, 0, 0.5], 8],
-                [[0.80, 0, 0.5], 5]
+            const parameters: [number[], number, THREE.Texture][] = [
+                [[1.0, 0.2, 0.5], 20, textures[0]],
+                [[0.95, 0.1, 0.5], 15, textures[1]],
+                [[0.90, 0.05, 0.5], 10, textures[2]],
+                [[0.85, 0, 0.5], 8, textures[3]],
+                [[0.80, 0, 0.5], 5, textures[4]],
+                [[0.75, 0, 0.5], 12, textures[5]]
             ];
 
             for (let i = 0; i < parameters.length; i++) {
-                const color = parameters[i][0] as number[];
-                const size = parameters[i][1] as number;
+                const color = parameters[i][0];
+                const size = parameters[i][1];
+                const texture = parameters[i][2];
 
                 materials[i] = new THREE.PointsMaterial({
                     size,
-                    map: circleTexture,
+                    map: texture,
                     blending: THREE.AdditiveBlending,
                     depthTest: false,
                     transparent: true,
