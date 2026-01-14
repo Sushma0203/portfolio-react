@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import MainLayout from '@/components/MainLayout';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { Send, MapPin, Mail, Phone, MessageSquare } from 'lucide-react';
 import clsx from 'clsx';
 
 export default function ContactPage() {
@@ -35,85 +35,142 @@ export default function ContactPage() {
 
     return (
         <MainLayout title="Contact">
-            <section className="relative min-h-screen py-24 overflow-hidden">
-                {/* Background Decor */}
-                <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-purple-500/5 blur-[120px] rounded-full" />
-                    <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-blue-500/5 blur-[120px] rounded-full" />
-                </div>
+            <section className="relative min-h-screen py-24 px-6 overflow-hidden">
+                <div className="container relative z-10 max-w-7xl mx-auto">
 
-                <div className="container relative z-10 px-6 max-w-4xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4 text-gray-900 dark:text-white">Let's Connect</h2>
-                        <p className="text-gray-500 dark:text-gray-400 text-lg">Have a project in mind? I'd love to hear from you.</p>
-                    </motion.div>
-
-                    <div className="flex justify-center">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                    {/* Page Header */}
+                    <div className="text-center mb-20">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-5xl md:text-7xl font-bold font-heading mb-6 text-black dark:text-white tracking-tight"
+                        >
+                            Let's <span className="text-purple-600 dark:text-purple-400">Talk</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="w-full max-w-xl glass-card p-8 md:p-12 shadow-2xl shadow-purple-500/5"
+                            className="text-black dark:text-gray-400 text-lg max-w-2xl mx-auto"
+                        >
+                            Have a specific inquiry or just want to say hi? Fill out the form below or use any of the contact channels.
+                        </motion.p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+                        {/* Left: Contact Form */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="glass-card p-10 md:p-14 bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-[3rem] shadow-2xl"
                         >
                             {status && (
                                 <div className={clsx(
-                                    "p-4 rounded-2xl mb-8 text-sm font-medium border animate-in fade-in slide-in-from-top-4",
+                                    "p-5 rounded-2xl mb-10 text-sm font-bold border animate-in fade-in slide-in-from-top-4",
                                     status.type === 'success' ? "bg-green-500/10 border-green-500/20 text-green-600 dark:text-green-400" : "bg-red-500/10 border-red-500/20 text-red-600 dark:text-red-400"
                                 )}>
                                     {status.message}
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Your Name</label>
-                                    <input
-                                        type="text"
-                                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all duration-300 text-gray-900 dark:text-white"
-                                        required
-                                        value={formData.name}
-                                        onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        placeholder="John Doe"
-                                    />
+                            <form onSubmit={handleSubmit} className="space-y-8">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="space-y-3">
+                                        <label className="text-sm font-black uppercase tracking-widest text-black dark:text-gray-400 ml-1">Full Name</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-6 py-5 rounded-2xl bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all duration-300 text-black dark:text-white"
+                                            required
+                                            value={formData.name}
+                                            onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                            placeholder=""
+                                        />
+                                    </div>
+                                    <div className="space-y-3">
+                                        <label className="text-sm font-black uppercase tracking-widest text-black dark:text-gray-400 ml-1">Email Address</label>
+                                        <input
+                                            type="email"
+                                            className="w-full px-6 py-5 rounded-2xl bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all duration-300 text-gray-900 dark:text-white"
+                                            required
+                                            value={formData.email}
+                                            onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                            placeholder=""
+                                        />
+                                    </div>
                                 </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Email Address</label>
-                                    <input
-                                        type="email"
-                                        className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all duration-300 text-gray-900 dark:text-white"
-                                        required
-                                        value={formData.email}
-                                        onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                        placeholder="john@example.com"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Message</label>
+                                <div className="space-y-3">
+                                    <label className="text-sm font-black uppercase tracking-widest text-black dark:text-gray-400 ml-1">Your Message</label>
                                     <textarea
-                                        className="w-full px-6 py-4 rounded-3xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all duration-300 text-gray-900 dark:text-white min-h-[150px] resize-none"
+                                        className="w-full px-6 py-5 rounded-[2rem] bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all duration-300 text-black dark:text-white min-h-[220px] resize-none"
                                         required
                                         value={formData.message}
                                         onChange={e => setFormData({ ...formData, message: e.target.value })}
-                                        placeholder="Tell me about your project..."
+                                        placeholder=""
                                     />
                                 </div>
                                 <button
                                     type="submit"
-                                    className="group relative w-full py-5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-2xl font-bold overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 active:scale-[0.98]"
+                                    className="group relative w-full py-6 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-3xl font-black uppercase tracking-widest text-sm overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/30 active:scale-[0.98]"
                                     disabled={sending}
                                 >
-                                    <span className="relative z-10 flex items-center justify-center gap-2">
-                                        {sending ? 'Sending...' : 'Send Message'}
-                                        {!sending && <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                                    <span className="relative z-10 flex items-center justify-center gap-3">
+                                        {sending ? 'Processing...' : 'Send Inquiry'}
+                                        {!sending && <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
                                     </span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 </button>
                             </form>
                         </motion.div>
+
+                        {/* Right: Info & Map */}
+                        <div className="space-y-12 h-full flex flex-col">
+                            {/* Contact Details */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 30 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                            >
+                                <div className="glass-card p-8 bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-3xl flex items-center gap-5">
+                                    <div className="p-4 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                                        <Mail size={24} />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-black dark:text-gray-400">Email Me</p>
+                                        <p className="font-bold text-black dark:text-white">sushmat952@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div className="glass-card p-8 bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-3xl flex items-center gap-5">
+                                    <div className="p-4 rounded-2xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                                        <MapPin size={24} />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-black dark:text-gray-400">Location</p>
+                                        <p className="font-bold text-black dark:text-white">Godawari, Lalitpur</p>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Map Restored */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="flex-grow min-h-[400px] glass-card overflow-hidden bg-white/40 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-[3rem] shadow-xl relative group"
+                            >
+                                <div className="absolute inset-0 bg-purple-500/5 group-hover:bg-purple-500/0 transition-colors pointer-events-none z-10" />
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56561.42851221147!2d85.35!3d27.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb170d4bde4d5d%3A0xc6657c9f8d5f35d!2sGodawari!5e0!3m2!1sen!2snp!4v1710345678901!5m2!1sen!2snp"
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0, filter: 'grayscale(1) contrast(1.2) invert(0.9) opacity(0.8)' }}
+                                    allowFullScreen={true}
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                />
+                            </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>

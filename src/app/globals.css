@@ -2,16 +2,28 @@
 
 @layer theme {
     :root {
-        /* Light Mode Default Variables */
-        --background: 240 10% 98%;
-        /* Light gray/white */
-        --foreground: 240 10% 3.9%;
-        /* Dark text */
+        /* Light Mode Variables */
+        --background: 0 0% 97%;
+        /* Soft off-white instead of pure white */
+        --foreground: 0 0% 0%;
+        /* Pure black for maximum contrast */
+        --card: 0 0% 98%;
+        /* Slightly lighter for cards */
+        --card-foreground: 0 0% 0%;
+        /* Pure black */
         --primary: 263.4 70% 50.4%;
         --primary-foreground: 210 40% 98%;
-        --card: 0 0% 100%;
-        --card-foreground: 240 10% 3.9%;
         --radius: 0.75rem;
+    }
+
+    .dark {
+        /* Dark Mode Variables */
+        --background: 240 10% 3.9%;
+        --foreground: 0 0% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --primary: 263.4 70% 50.4%;
+        --primary-foreground: 210 40% 98%;
     }
 }
 
@@ -49,34 +61,32 @@
             transform: scale(1.2);
         }
     }
-}
 
-/* Base Styles */
-body {
-    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] font-body antialiased;
-    overflow-x: hidden;
-    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
+    @keyframes hue-rotate {
+        from {
+            filter: hue-rotate(0deg) invert(1);
+        }
 
-/* Dark Mode Overrides */
-.dark body {
-    background-color: #030014;
-    /* Standardized Deep Space Black */
-    color: #f8fafc;
-}
+        to {
+            filter: hue-rotate(360deg) invert(1);
+        }
+    }
 
-.dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --primary: 263.4 70% 50.4%;
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
 }
 
 /* Custom Utilities */
 @layer utilities {
     .glass-panel {
-        @apply bg-white/60 dark:bg-white/5 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl;
+        @apply bg-white/90 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-xl;
     }
 
     .text-gradient {
@@ -163,15 +173,15 @@ body {
     }
 
     .text-secondary {
-        @apply text-gray-700 dark:text-gray-400;
+        @apply text-black dark:text-gray-400;
     }
 
     .section-title {
-        @apply text-4xl md:text-5xl font-bold font-heading mb-16 text-center text-gray-900 dark:text-white tracking-tight;
+        @apply text-4xl md:text-5xl font-bold font-heading mb-16 text-center text-black dark:text-white tracking-tight;
     }
 
     .lead {
-        @apply text-xl text-gray-800 dark:text-gray-300;
+        @apply text-xl text-black dark:text-gray-300;
     }
 
     .justify-content-center {
@@ -191,7 +201,7 @@ body {
     }
 
     .glass-card {
-        @apply bg-white/60 dark:bg-white/5 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-xl rounded-3xl overflow-hidden;
+        @apply bg-white/90 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-xl rounded-3xl overflow-hidden;
     }
 }
 
@@ -256,4 +266,9 @@ body:not(.dark) .star {
 
 ::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400 dark:bg-slate-600;
+}
+
+/* Force black text in light mode only */
+html:not(.dark) body {
+    color: #000000;
 }

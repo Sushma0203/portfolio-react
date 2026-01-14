@@ -101,6 +101,18 @@ async function GET() {
         const info = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$prisma$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].about_infos.findFirst();
         const defaultInfo = {
             career_objective: "To commit a professional job utilizing my field of study and gain work experience for future assiduous.",
+            education_details: [
+                {
+                    degree: "BIM",
+                    school: "St. Xavier's College",
+                    year: "Present"
+                },
+                {
+                    degree: "Till Grade 12",
+                    school: "St. Mary's High School",
+                    year: "2021"
+                }
+            ],
             technical_skills: [
                 'Programming',
                 'Tools',
@@ -108,10 +120,12 @@ async function GET() {
             ],
             soft_skills: [
                 'Communication',
-                'Teamwork'
+                'Teamwork',
+                'Languages: English, Nepali, Hindi'
             ],
             achievements: [
-                'Scholarships & GPA honors',
+                'Scholarships',
+                'GPA honors',
                 'Volunteer work',
                 'Leadership roles'
             ]

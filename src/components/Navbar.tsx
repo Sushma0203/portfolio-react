@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import clsx from 'clsx';
+import Stars from './Stars';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -54,13 +55,14 @@ export default function Navbar() {
             )}
         >
             <div className={clsx(
-                "container mx-auto px-6 rounded-2xl transition-all duration-300",
-                scrolled ? "bg-white/80 dark:bg-black/50 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg py-3" : "bg-transparent"
+                "container mx-auto px-6 rounded-2xl transition-all duration-300 relative overflow-hidden",
+                scrolled ? "bg-black/95 dark:bg-black/80 backdrop-blur-xl border border-white/10 dark:border-white/10 shadow-xl py-3" : "bg-black/80 backdrop-blur-xl border border-white/10"
             )}>
-                <div className="flex items-center justify-between">
+                <Stars className="absolute inset-0 w-full h-full pointer-events-none opacity-20" count={20} />
+                <div className="flex items-center justify-between relative z-10">
                     <Link href="/" className="relative z-50 group">
                         <div className="flex items-center gap-2">
-                            <span className="text-2xl font-bold font-heading bg-gradient-to-r from-purple-700 to-indigo-600 dark:from-white dark:to-white/60 bg-clip-text text-transparent group-hover:scale-105 transition-all duration-300">
+                            <span className="text-2xl font-bold font-heading bg-gradient-to-r from-white to-white/80 dark:from-white dark:to-white/60 bg-clip-text text-transparent group-hover:scale-105 transition-all duration-300">
                                 Sushma.
                             </span>
                         </div>
@@ -73,14 +75,14 @@ export default function Navbar() {
                                 key={link.path}
                                 href={link.path}
                                 className={clsx(
-                                    "relative text-sm font-medium transition-colors hover:text-purple-500 dark:hover:text-purple-400",
-                                    pathname === link.path ? "text-purple-600 dark:text-purple-400" : "text-gray-800 dark:text-gray-300"
+                                    "relative text-sm font-medium transition-colors hover:text-purple-400 dark:hover:text-purple-400",
+                                    pathname === link.path ? "text-purple-400 dark:text-purple-400" : "text-white dark:text-gray-300"
                                 )}
                             >
                                 {pathname === link.path && (
                                     <motion.span
                                         layoutId="underline"
-                                        className="absolute left-0 top-full block h-[1px] w-full bg-purple-600 dark:bg-purple-400 mt-1"
+                                        className="absolute left-0 top-full block h-[1px] w-full bg-purple-400 dark:bg-purple-400 mt-1"
                                     />
                                 )}
                                 {link.name}
@@ -89,7 +91,7 @@ export default function Navbar() {
 
                         <button
                             onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-gray-700 dark:text-gray-200"
+                            className="p-2 rounded-full hover:bg-white/10 dark:hover:bg-white/10 transition-colors text-white dark:text-gray-200"
                         >
                             {isDark ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
@@ -104,7 +106,7 @@ export default function Navbar() {
                             {isDark ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
                         <button
-                            className="z-50 text-gray-800 dark:text-white"
+                            className="z-50 text-white dark:text-white"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             {mobileMenuOpen ? <X /> : <Menu />}

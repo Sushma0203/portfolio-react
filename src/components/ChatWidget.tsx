@@ -81,8 +81,6 @@ export default function ChatWidget() {
         flexDirection: 'column',
         boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
         overflow: 'hidden',
-        background: 'rgba(255, 255, 255, 0.85)',
-        border: '1px solid rgba(0, 0, 0, 0.05)',
         zIndex: 10000,
         transition: 'all 0.3s ease',
     };
@@ -97,7 +95,7 @@ export default function ChatWidget() {
                 {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
             </button>
 
-            <div id="chat-window" style={chatWindowStyle} className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-black/5 dark:border-white/10">
+            <div id="chat-window" style={chatWindowStyle} className="bg-white/95 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-2xl">
                 <div id="chat-header" className="p-4 bg-purple-600 text-white flex justify-between items-center">
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>

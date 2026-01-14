@@ -9,9 +9,13 @@ export async function GET() {
 
         const defaultInfo = {
             career_objective: "To commit a professional job utilizing my field of study and gain work experience for future assiduous.",
+            education_details: [
+                { degree: "BIM", school: "St. Xavier's College", year: "Present" },
+                { degree: "Till Grade 12", school: "St. Mary's High School", year: "2021" }
+            ],
             technical_skills: ['Programming', 'Tools', 'Software'],
-            soft_skills: ['Communication', 'Teamwork'],
-            achievements: ['Scholarships & GPA honors', 'Volunteer work', 'Leadership roles']
+            soft_skills: ['Communication', 'Teamwork', 'Languages: English, Nepali, Hindi'],
+            achievements: ['Scholarships', 'GPA honors', 'Volunteer work', 'Leadership roles']
         };
 
         return NextResponse.json({

@@ -26,43 +26,70 @@ export default function About() {
 
     return (
         <MainLayout title="About">
-            <section className="container py-5">
-                <h2 className="section-title">About Me</h2>
-                <div className="row justify-content-center">
-                    <div className="col-lg-10 reveal active">
-                        <div className="glass-card p-5 shadow-lg fade-in">
-                            <p className="lead mb-4">{info.career_objective}</p>
+            <section className="container py-24">
+                <div className="max-w-6xl mx-auto px-6">
+                    <h2 className="text-5xl md:text-7xl font-bold font-heading mb-16 text-center text-black dark:text-white tracking-tight">
+                        About <span className="text-purple-500">Me</span>
+                    </h2>
 
-                            <div className="row g-4 mt-2">
-                                <div className="col-md-6">
-                                    <h4 className="fw-bold mb-3 flex items-center gap-2 font-heading"><Code2 className="text-purple-500" />Technical Skills</h4>
-                                    <ul className="list-group list-group-flush bg-transparent">
-                                        {info.technical_skills?.map((skill: string, i: number) => (
-                                            <li key={i} className="list-group-item bg-transparent border-0 ps-0 text-secondary">{skill}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="col-md-6">
-                                    <h4 className="fw-bold mb-3 flex items-center gap-2 font-heading"><Users className="text-purple-500" />Soft Skills</h4>
-                                    <ul className="list-group list-group-flush bg-transparent">
-                                        {info.soft_skills?.map((skill: string, i: number) => (
-                                            <li key={i} className="list-group-item bg-transparent border-0 ps-0 text-secondary">{skill}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="col-12 mt-4">
-                                    <h4 className="fw-bold mb-3 flex items-center gap-2 font-heading"><Trophy className="text-purple-500" />Achievements</h4>
-                                    <ul className="list-group list-group-flush bg-transparent">
-                                        {info.achievements?.map((achievement: string, i: number) => (
-                                            <li key={i} className="list-group-item bg-transparent border-0 ps-0 text-secondary">{achievement}</li>
-                                        ))}
-                                    </ul>
-                                </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Career Objective Block */}
+                        <div className="md:col-span-2 glass-card p-10 reveal active">
+                            <h3 className="text-2xl font-bold mb-6 text-purple-400 flex items-center gap-3 font-heading">
+                                <Users size={28} /> Career Vision
+                            </h3>
+                            <p className="text-lg md:text-xl text-black dark:text-gray-300 leading-relaxed font-medium">
+                                {info.career_objective}
+                            </p>
+                        </div>
+
+                        {/* Technical Skills Block */}
+                        <div className="glass-card p-10 reveal active">
+                            <h3 className="text-2xl font-bold mb-8 text-purple-400 flex items-center gap-3 font-heading">
+                                <Code2 size={28} /> Technical Expertise
+                            </h3>
+                            <div className="flex flex-wrap gap-3">
+                                {info.technical_skills?.map((skill: string, i: number) => (
+                                    <span key={i} className="px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/20 text-black dark:text-gray-200 text-sm font-semibold">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Soft Skills Block */}
+                        <div className="glass-card p-10 reveal active">
+                            <h3 className="text-2xl font-bold mb-8 text-purple-400 flex items-center gap-3 font-heading">
+                                <Users size={28} /> Soft Skills
+                            </h3>
+                            <div className="flex flex-wrap gap-3">
+                                {info.soft_skills?.map((skill: string, i: number) => (
+                                    <span key={i} className="px-4 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-black dark:text-gray-200 text-sm font-semibold">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Achievements Block */}
+                        <div className="md:col-span-2 glass-card p-10 reveal active">
+                            <h3 className="text-2xl font-bold mb-8 text-purple-400 flex items-center gap-3 font-heading">
+                                <Trophy size={28} /> Milestones & Achievements
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {info.achievements?.map((item: string, i: number) => (
+                                    <div key={i} className="flex gap-4 items-start p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/30 transition-all">
+                                        <div className="mt-1.5 w-2 h-2 rounded-full bg-purple-500 shrink-0 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+                                        <p className="text-black dark:text-gray-300 font-medium leading-relaxed">
+                                            {item}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                </div >
-            </section >
+                </div>
+            </section>
         </MainLayout >
     );
 }
