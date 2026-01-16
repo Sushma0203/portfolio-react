@@ -2,6 +2,12 @@
   "version": 4,
   "routes": {
     "/_global-error": {
+      "initialStatus": 500,
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/_global-error/layout,_N_T_/_global-error/page,_N_T_/_global-error"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -27,6 +33,11 @@
     },
     "/_not-found": {
       "initialStatus": 404,
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -51,6 +62,11 @@
       ]
     },
     "/about": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/about/layout,_N_T_/about/page,_N_T_/about"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -75,6 +91,11 @@
       ]
     },
     "/admin/about": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/about/layout,_N_T_/admin/about/page,_N_T_/admin/about"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -99,6 +120,11 @@
       ]
     },
     "/admin/chatbot/create": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/chatbot/layout,_N_T_/admin/chatbot/create/layout,_N_T_/admin/chatbot/create/page,_N_T_/admin/chatbot/create"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -123,6 +149,11 @@
       ]
     },
     "/admin/chatbot": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/chatbot/layout,_N_T_/admin/chatbot/page,_N_T_/admin/chatbot"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -147,6 +178,11 @@
       ]
     },
     "/admin/dashboard": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/dashboard/layout,_N_T_/admin/dashboard/page,_N_T_/admin/dashboard"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -171,6 +207,11 @@
       ]
     },
     "/admin/gallery/create": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/gallery/layout,_N_T_/admin/gallery/create/layout,_N_T_/admin/gallery/create/page,_N_T_/admin/gallery/create"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -195,6 +236,11 @@
       ]
     },
     "/admin/gallery": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/gallery/layout,_N_T_/admin/gallery/page,_N_T_/admin/gallery"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -219,6 +265,11 @@
       ]
     },
     "/admin/home": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/home/layout,_N_T_/admin/home/page,_N_T_/admin/home"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -243,6 +294,11 @@
       ]
     },
     "/admin/messages": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/messages/layout,_N_T_/admin/messages/page,_N_T_/admin/messages"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -267,6 +323,11 @@
       ]
     },
     "/admin/projects/create": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/projects/layout,_N_T_/admin/projects/create/layout,_N_T_/admin/projects/create/page,_N_T_/admin/projects/create"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -291,6 +352,11 @@
       ]
     },
     "/admin/projects": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/projects/layout,_N_T_/admin/projects/page,_N_T_/admin/projects"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -315,6 +381,11 @@
       ]
     },
     "/contact": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/contact/layout,_N_T_/contact/page,_N_T_/contact"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -368,6 +439,11 @@
       ]
     },
     "/gallery": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/gallery/layout,_N_T_/gallery/page,_N_T_/gallery"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -392,6 +468,11 @@
       ]
     },
     "/login": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/login/layout,_N_T_/login/page,_N_T_/login"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -416,6 +497,11 @@
       ]
     },
     "/": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/page,_N_T_/,_N_T_/index"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
@@ -440,6 +526,11 @@
       ]
     },
     "/projects": {
+      "initialHeaders": {
+        "x-nextjs-stale-time": "300",
+        "x-nextjs-prerender": "1",
+        "x-next-cache-tags": "_N_T_/layout,_N_T_/projects/layout,_N_T_/projects/page,_N_T_/projects"
+      },
       "experimentalBypassFor": [
         {
           "type": "header",
