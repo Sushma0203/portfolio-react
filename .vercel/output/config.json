@@ -33,7 +33,7 @@
     },
     {
       "continue": true,
-      "src": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/admin(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\.json)?[\\/#\\?]?$",
+      "src": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/admin(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\\\.json)?[\\/#\\?]?$",
       "missing": [
         {
           "type": "header",
@@ -41,7 +41,7 @@
           "value": "b64dbf8c46eab085d8fffd209d9914f0"
         }
       ],
-      "middlewarePath": "/_middleware",
+      "middlewarePath": "middleware",
       "middlewareRawSrc": [
         "/admin/:path*"
       ],
@@ -49,7 +49,7 @@
     },
     {
       "continue": true,
-      "src": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/login(\\.json)?[\\/#\\?]?$",
+      "src": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/login(\\\\.json)?[\\/#\\?]?$",
       "missing": [
         {
           "type": "header",
@@ -57,7 +57,7 @@
           "value": "b64dbf8c46eab085d8fffd209d9914f0"
         }
       ],
-      "middlewarePath": "/_middleware",
+      "middlewarePath": "middleware",
       "middlewareRawSrc": [
         "/login"
       ],
@@ -290,7 +290,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|SF0rnsmj8NQ3xwghBo5yF)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|lM4PIBXt2nGxLos9pxc7D)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
@@ -318,7 +318,7 @@
     },
     {
       "src": "/.*",
-      "dest": "/404",
+      "dest": "/_not-found",
       "status": 404,
       "headers": {
         "x-next-error-status": "404"
@@ -371,21 +371,9 @@
     "contentDispositionType": "attachment"
   },
   "overrides": {
-    "404.html": {
-      "path": "404",
-      "contentType": "text/html; charset=utf-8"
-    },
     "500.html": {
       "path": "500",
       "contentType": "text/html; charset=utf-8"
-    },
-    "404.rsc.json": {
-      "path": "404.rsc",
-      "contentType": "application/json"
-    },
-    "404.segments/_tree.segment.rsc.json": {
-      "path": "404.segments/_tree.segment.rsc",
-      "contentType": "application/json"
     },
     "500.rsc.json": {
       "path": "500.rsc",

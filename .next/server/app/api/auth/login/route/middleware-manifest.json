@@ -1,0 +1,41 @@
+{
+  "sorted_middleware": [
+    "/api/auth/login/route"
+  ],
+  "middleware": {},
+  "instrumentation": null,
+  "functions": {
+    "/api/auth/login/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "required-server-files.js",
+        "server/server-reference-manifest.js",
+        "server/app/api/auth/login/route_client-reference-manifest.js",
+        "server/edge/chunks/_next-internal_server_app_api_auth_login_route_actions_1d2c0e30.js",
+        "server/edge/chunks/node_modules_next_dist_esm_api_headers_2f5103ad.js",
+        "server/edge/chunks/[root-of-the-server]__8b8c06a7._.js",
+        "server/edge/chunks/node_modules_next_dist_f445ca85._.js",
+        "server/edge/chunks/_1bc77efc._.js",
+        "server/edge/chunks/turbopack-node_modules_next_dist_esm_build_templates_edge-wrapper_66ba1367.js"
+      ],
+      "name": "app/api/auth/login/route",
+      "page": "/api/auth/login/route",
+      "matchers": [
+        {
+          "regexp": "^/api/auth/login(?:/)?$",
+          "originalSource": "/api/auth/login"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "lM4PIBXt2nGxLos9pxc7D",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "7CMPyWwNq4VpahZ29KoTo+RTPFJ3XnuUZtmWeTn+8ws=",
+        "__NEXT_PREVIEW_MODE_ID": "b64dbf8c46eab085d8fffd209d9914f0",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "69787e82d3e1b5a2848537a381510eb830dbaef4fca68c36af9e8a10e1f7522b",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "43e1a6a95d7b14f7d2bf0bfd128bf33f7fb203d2c650d548880f835785215a2b"
+      }
+    }
+  }
+}

@@ -1,3 +1,3 @@
 {
-  "/admin/chatbot/edit/[id]/page": "app/admin/chatbot/edit/[id]/page.js"
+  "/admin/chatbot/edit/[id]/page": "app-edge-has-no-entrypoint"
 }

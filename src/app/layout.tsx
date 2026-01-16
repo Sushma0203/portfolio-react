@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Personal portfolio of Sushma Thapa",
 };
 
+export const runtime = 'edge';
+
 export default function RootLayout({
   children,
 }: Readonly<{
