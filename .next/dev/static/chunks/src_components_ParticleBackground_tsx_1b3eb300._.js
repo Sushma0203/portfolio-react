@@ -24,6 +24,7 @@ const ParticleBackground = ()=>{
             let camera;
             let scene;
             let renderer;
+            let geometry;
             let materials = [];
             let mouseX = 0;
             let mouseY = 0;
@@ -99,6 +100,10 @@ const ParticleBackground = ()=>{
                     if (renderer) {
                         renderer.setClearColor(bgColor, 1);
                     }
+                    // Adjust density: Full for dark (snowflakes), Half for light (stars)
+                    if (geometry) {
+                        geometry.setDrawRange(0, isDark ? 562 : 281);
+                    }
                     // Switch between snowflakes (dark) and stars (light)
                     materials.forEach({
                         "ParticleBackground.useEffect.updateTheme": (m, i)=>{
@@ -141,9 +146,9 @@ const ParticleBackground = ()=>{
                     camera = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PerspectiveCamera"](75, window.innerWidth / window.innerHeight, 1, 2000);
                     camera.position.z = 1000;
                     scene = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Scene"]();
-                    const geometry = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BufferGeometry"]();
+                    geometry = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BufferGeometry"]();
                     const vertices = [];
-                    // 15% density: 562 particles (down from 3750)
+                    // 15% density: 562 particles
                     for(let i = 0; i < 562; i++){
                         const x = Math.random() * 2000 - 1000;
                         const y = Math.random() * 2000 - 1000;
@@ -310,7 +315,7 @@ const ParticleBackground = ()=>{
         className: "fixed inset-0 z-[-1] pointer-events-none bg-white dark:bg-black"
     }, void 0, false, {
         fileName: "[project]/src/components/ParticleBackground.tsx",
-        lineNumber: 266,
+        lineNumber: 272,
         columnNumber: 9
     }, ("TURBOPACK compile-time value", void 0));
 };

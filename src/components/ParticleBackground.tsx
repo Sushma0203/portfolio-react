@@ -12,6 +12,7 @@ const ParticleBackground: React.FC = () => {
         let camera: THREE.PerspectiveCamera;
         let scene: THREE.Scene;
         let renderer: THREE.WebGLRenderer;
+        let geometry: THREE.BufferGeometry;
         let materials: THREE.PointsMaterial[] = [];
         let mouseX = 0;
         let mouseY = 0;
@@ -38,7 +39,7 @@ const ParticleBackground: React.FC = () => {
             ctx.fillStyle = 'white';
             ctx.lineJoin = 'round';
             ctx.lineCap = 'round';
-            
+
             // Add glow effect
             ctx.shadowBlur = 15;
             ctx.shadowColor = 'white';
@@ -105,6 +106,11 @@ const ParticleBackground: React.FC = () => {
                 renderer.setClearColor(bgColor, 1);
             }
 
+            // Adjust density: Full for dark (snowflakes), Half for light (stars)
+            if (geometry) {
+                geometry.setDrawRange(0, isDark ? 562 : 281);
+            }
+
             // Switch between snowflakes (dark) and stars (light)
             materials.forEach((m, i) => {
                 if (isDark) {
@@ -134,10 +140,10 @@ const ParticleBackground: React.FC = () => {
 
             scene = new THREE.Scene();
 
-            const geometry = new THREE.BufferGeometry();
+            geometry = new THREE.BufferGeometry();
             const vertices = [];
 
-            // 15% density: 562 particles (down from 3750)
+            // 15% density: 562 particles
             for (let i = 0; i < 562; i++) {
                 const x = Math.random() * 2000 - 1000;
                 const y = Math.random() * 2000 - 1000;

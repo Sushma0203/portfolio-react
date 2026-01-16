@@ -1,0 +1,305 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/admin/chatbot/edit/[id]",
+      "regex": "^/admin/chatbot/edit/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/admin/chatbot/edit/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/admin/messages/show/[id]",
+      "regex": "^/admin/messages/show/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/admin/messages/show/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/admin/projects/edit/[id]",
+      "regex": "^/admin/projects/edit/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/admin/projects/edit/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/admin/chatbot/[id]",
+      "regex": "^/api/admin/chatbot/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/admin/chatbot/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/admin/gallery/[id]",
+      "regex": "^/api/admin/gallery/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/admin/gallery/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/admin/messages/[id]",
+      "regex": "^/api/admin/messages/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/admin/messages/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/admin/projects/[id]",
+      "regex": "^/api/admin/projects/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/admin/projects/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/admin/about",
+      "regex": "^/admin/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/about(?:/)?$"
+    },
+    {
+      "page": "/admin/chatbot",
+      "regex": "^/admin/chatbot(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/chatbot(?:/)?$"
+    },
+    {
+      "page": "/admin/chatbot/create",
+      "regex": "^/admin/chatbot/create(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/chatbot/create(?:/)?$"
+    },
+    {
+      "page": "/admin/dashboard",
+      "regex": "^/admin/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/dashboard(?:/)?$"
+    },
+    {
+      "page": "/admin/gallery",
+      "regex": "^/admin/gallery(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/gallery(?:/)?$"
+    },
+    {
+      "page": "/admin/gallery/create",
+      "regex": "^/admin/gallery/create(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/gallery/create(?:/)?$"
+    },
+    {
+      "page": "/admin/home",
+      "regex": "^/admin/home(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/home(?:/)?$"
+    },
+    {
+      "page": "/admin/messages",
+      "regex": "^/admin/messages(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/messages(?:/)?$"
+    },
+    {
+      "page": "/admin/projects",
+      "regex": "^/admin/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/projects(?:/)?$"
+    },
+    {
+      "page": "/admin/projects/create",
+      "regex": "^/admin/projects/create(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/projects/create(?:/)?$"
+    },
+    {
+      "page": "/api/admin/about",
+      "regex": "^/api/admin/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/about(?:/)?$"
+    },
+    {
+      "page": "/api/admin/chatbot",
+      "regex": "^/api/admin/chatbot(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/chatbot(?:/)?$"
+    },
+    {
+      "page": "/api/admin/dashboard",
+      "regex": "^/api/admin/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/dashboard(?:/)?$"
+    },
+    {
+      "page": "/api/admin/gallery",
+      "regex": "^/api/admin/gallery(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/gallery(?:/)?$"
+    },
+    {
+      "page": "/api/admin/home",
+      "regex": "^/api/admin/home(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/home(?:/)?$"
+    },
+    {
+      "page": "/api/admin/messages",
+      "regex": "^/api/admin/messages(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/messages(?:/)?$"
+    },
+    {
+      "page": "/api/admin/projects",
+      "regex": "^/api/admin/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/projects(?:/)?$"
+    },
+    {
+      "page": "/api/auth/login",
+      "regex": "^/api/auth/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/login(?:/)?$"
+    },
+    {
+      "page": "/api/auth/logout",
+      "regex": "^/api/auth/logout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/logout(?:/)?$"
+    },
+    {
+      "page": "/api/public/about-data",
+      "regex": "^/api/public/about\\-data(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/about\\-data(?:/)?$"
+    },
+    {
+      "page": "/api/public/chats",
+      "regex": "^/api/public/chats(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/chats(?:/)?$"
+    },
+    {
+      "page": "/api/public/contact-submit",
+      "regex": "^/api/public/contact\\-submit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/contact\\-submit(?:/)?$"
+    },
+    {
+      "page": "/api/public/gallery-data",
+      "regex": "^/api/public/gallery\\-data(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/gallery\\-data(?:/)?$"
+    },
+    {
+      "page": "/api/public/home-data",
+      "regex": "^/api/public/home\\-data(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/home\\-data(?:/)?$"
+    },
+    {
+      "page": "/api/public/projects-data",
+      "regex": "^/api/public/projects\\-data(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/projects\\-data(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/gallery",
+      "regex": "^/gallery(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/gallery(?:/)?$"
+    },
+    {
+      "page": "/login",
+      "regex": "^/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/login(?:/)?$"
+    },
+    {
+      "page": "/projects",
+      "regex": "^/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/projects(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}
