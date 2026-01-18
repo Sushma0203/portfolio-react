@@ -1,7 +1,17 @@
-// src/lib/prisma.ts
-// Stub for Cloudflare Pages deployment
-// This prevents build errors since Prisma can't run on Cloudflare Pages
+import { PrismaClient } from '@prisma/client';
 
-const prisma = {} as any;
+const prismaClientSingleton = () => {
+    return new PrismaClient();
+};
+
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+
+const globalForPrisma = globalThis as unknown as {
+    prisma: PrismaClientSingleton | undefined;
+};
+
+const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 export { prisma };
