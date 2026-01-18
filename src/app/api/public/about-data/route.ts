@@ -22,8 +22,12 @@ export async function GET() {
         return NextResponse.json({
             info: info ? serializeBigInt(info) : defaultInfo
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error fetching about data:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json({
+            error: 'Database Error',
+            details: error.message || 'Unknown error',
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        }, { status: 500 });
     }
 }

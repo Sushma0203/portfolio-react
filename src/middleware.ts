@@ -22,4 +22,4 @@ export const config = {
     matcher: ['/admin/:path*', '/login'],
 };
 
-export const runtime = 'experimental-edge';
+// export const runtime = 'experimental-edge';

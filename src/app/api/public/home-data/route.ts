@@ -18,8 +18,11 @@ export async function GET() {
         return NextResponse.json({
             info: info ? serializeBigInt(info) : defaultInfo
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error fetching home data:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json({
+            error: 'Database Error',
+            details: error.message || 'Unknown error'
+        }, { status: 500 });
     }
 }
