@@ -33,8 +33,12 @@ export async function GET() {
         return NextResponse.json({
             projects: serializeBigInt(projects)
         });
-    } catch (error) {
-        console.error('Error fetching projects data:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    } catch (error: any) {
+        console.error('Error fetching home data:', error);
+        return NextResponse.json({
+            error: 'Home Data Database Error',
+            details: error.message || 'Unknown error',
+            env: { hasDbUrl: !!process.env.DATABASE_URL }
+        }, { status: 500 });
     }
 }

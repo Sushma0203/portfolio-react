@@ -15,8 +15,11 @@ export async function GET() {
         return NextResponse.json({
             images: serializeBigInt(images)
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error fetching gallery data:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json({
+            error: 'Gallery Database Error',
+            details: error.message || 'Unknown error'
+        }, { status: 500 });
     }
 }
