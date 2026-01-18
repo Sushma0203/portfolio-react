@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { serializeBigInt } from '@/lib/serialize';
 
@@ -40,9 +40,9 @@ export async function POST(request: NextRequest) {
             where: { id: info.id },
             data: {
                 career_objective: data.career_objective,
-                technical_skills: data.technical_skills as any,
-                soft_skills: data.soft_skills as any,
-                achievements: data.achievements as any,
+                technical_skills: data.technical_skills as string[],
+                soft_skills: data.soft_skills as string[],
+                achievements: data.achievements as string[],
             }
         });
 

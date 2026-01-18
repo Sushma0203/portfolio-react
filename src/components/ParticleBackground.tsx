@@ -13,7 +13,7 @@ const ParticleBackground: React.FC = () => {
         let scene: THREE.Scene;
         let renderer: THREE.WebGLRenderer;
         let geometry: THREE.BufferGeometry;
-        let materials: THREE.PointsMaterial[] = [];
+        const materials: THREE.PointsMaterial[] = [];
         let mouseX = 0;
         let mouseY = 0;
         let windowHalfX = window.innerWidth / 2;

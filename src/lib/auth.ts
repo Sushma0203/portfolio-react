@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 const SESSION_COOKIE_NAME = 'admin_session';
 
 export async function login(user: any) {
-    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 1 day
+    // const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 1 day - Unused
 
     // Create the session data
     const sessionData = JSON.stringify(user);
@@ -32,7 +32,7 @@ export async function getSession() {
     if (!session) return null;
     try {
         return JSON.parse(session.value);
-    } catch (e) {
+    } catch {
         return null;
     }
 }

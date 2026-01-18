@@ -24,8 +24,12 @@ export default function AdminLogin() {
             if (res.data.success) {
                 router.push('/admin/dashboard');
             }
-        } catch (err: any) {
-            setError(err.response?.data?.message || 'Login failed');
+        } catch (err: unknown) {
+            if (axios.isAxiosError(err)) {
+                setError(err.response?.data?.message || 'Login failed');
+            } else {
+                setError('Login failed');
+            }
         } finally {
             setLoading(false);
         }

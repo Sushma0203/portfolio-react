@@ -5,12 +5,26 @@ import axios from 'axios';
 import clsx from 'clsx';
 import { MessageCircle, X, Send, Minus } from 'lucide-react';
 
+// Define Message Interface
+interface ChatMessage {
+    id?: string;
+    session_id?: string;
+    message: string;
+    is_admin: boolean;
+    is_read: boolean;
+    created_at?: string;
+}
+
 export default function ChatWidget() {
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState<any[]>([]);
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [inputText, setInputText] = useState('');
     const chatIntervalRef = useRef<any>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     const toggleChat = () => {
         if (isOpen) {
@@ -59,9 +73,7 @@ export default function ChatWidget() {
         }
     }, [messages, isOpen]);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
+
 
     useEffect(() => {
         return () => {

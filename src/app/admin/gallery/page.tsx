@@ -5,12 +5,17 @@ import Link from 'next/link';
 import Pagination from '@/components/Pagination';
 import axios from 'axios';
 
+interface GalleryData {
+    data: any[]; // Using any[] for inner data for now to minimize changes, or define Image interface
+    links: any[];
+}
+
 const GalleryIndex = () => {
-    const [images, setImages] = useState<any>(null);
+    const [images, setImages] = useState<GalleryData | null>(null);
     const [loading, setLoading] = useState(true);
 
     const loadImages = (url = '/api/admin/gallery') => {
-        setLoading(true);
+        // setLoading(true);
         axios.get(url)
             .then(res => {
                 setImages(res.data);
@@ -28,11 +33,15 @@ const GalleryIndex = () => {
 
     const handleDelete = (id: string) => {
         if (confirm('Are you sure you want to delete this image?')) {
+            setLoading(true);
             axios.delete(`/api/admin/gallery/${id}`)
                 .then(() => {
                     loadImages();
                 })
-                .catch(() => alert('Error deleting image'));
+                .catch(() => {
+                    alert('Error deleting image');
+                    setLoading(false);
+                });
         }
     };
 

@@ -3,8 +3,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// Interface for About Data
+interface AboutData {
+    career_objective: string;
+    technical_skills: string;
+    soft_skills: string;
+    achievements: string;
+}
+
 const AboutEdit = () => {
-    const [data, setData] = useState<any>({
+    const [data, setData] = useState<AboutData>({
         career_objective: '',
         technical_skills: '',
         soft_skills: '',
@@ -47,7 +55,7 @@ const AboutEdit = () => {
         try {
             const res = await axios.post('/api/admin/about', payload);
             setMessage(res.data.message);
-        } catch (err) {
+        } catch (err: unknown) {
             console.error(err);
             alert('Error updating about info');
         } finally {

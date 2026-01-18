@@ -1,5 +1,0 @@
-{
-  "/api/public/about-data/route": "app/api/public/about-data/route.js",
-  "/api/public/home-data/route": "app/api/public/home-data/route.js",
-  "/page": "app/page.js"
-}

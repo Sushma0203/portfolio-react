@@ -5,12 +5,17 @@ import Link from 'next/link';
 import Pagination from '@/components/Pagination';
 import axios from 'axios';
 
+interface ProjectData {
+    data: any[];
+    links: any[];
+}
+
 const ProjectsIndex = () => {
-    const [projects, setProjects] = useState<any>(null);
+    const [projects, setProjects] = useState<ProjectData | null>(null);
     const [loading, setLoading] = useState(true);
 
     const loadProjects = (url = '/api/admin/projects') => {
-        setLoading(true);
+        // setLoading(true);
         axios.get(url)
             .then(res => {
                 setProjects(res.data);
@@ -28,11 +33,15 @@ const ProjectsIndex = () => {
 
     const handleDelete = (id: string) => {
         if (confirm('Are you sure you want to delete this project?')) {
+            setLoading(true);
             axios.delete(`/api/admin/projects/${id}`)
                 .then(() => {
                     loadProjects();
                 })
-                .catch(() => alert('Error deleting project'));
+                .catch(() => {
+                    alert('Error deleting project');
+                    setLoading(false);
+                });
         }
     };
 

@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { serializeBigInt } from '@/lib/serialize';
 import { cookies } from 'next/headers';
 
 export async function GET() {
     try {
         const cookieStore = await cookies();
-        let sessionId = cookieStore.get('chat_session_id')?.value;
+        const sessionId = cookieStore.get('chat_session_id')?.value;
 
         if (!sessionId) {
             return NextResponse.json([]);

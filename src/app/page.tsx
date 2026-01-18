@@ -36,8 +36,10 @@ const TypedText = ({ strings }: { strings: string[] }) => {
           setCharIndex(prev => prev - 1);
         }, 50);
       } else {
-        setIsTyping(true);
-        setStringIndex(prev => (prev + 1) % strings.length);
+        setTimeout(() => {
+          setIsTyping(true);
+          setStringIndex(prev => (prev + 1) % strings.length);
+        }, 0);
       }
     }
 

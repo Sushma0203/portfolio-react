@@ -22,7 +22,8 @@ export default function Navbar() {
         // Initialize dark mode from local storage or default to true
         const savedMode = localStorage.getItem('theme');
         const initialDark = savedMode ? savedMode === 'dark' : true;
-        setIsDark(initialDark);
+        // Defer state update to avoid synchronous setState in effect warning
+        setTimeout(() => setIsDark(initialDark), 0);
         document.documentElement.classList.toggle('dark', initialDark);
 
         window.addEventListener('scroll', handleScroll);

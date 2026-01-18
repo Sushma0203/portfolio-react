@@ -5,9 +5,17 @@ import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import axios from 'axios';
 
+interface ProjectForm {
+    title: string;
+    description: string;
+    category: string;
+    tech_stack: string;
+    image: File | null;
+}
+
 const ProjectEdit = () => {
     const { id } = useParams();
-    const [data, setData] = useState<any>({
+    const [data, setData] = useState<ProjectForm>({
         title: '',
         description: '',
         category: '',
@@ -57,7 +65,7 @@ const ProjectEdit = () => {
             // We use POST to handle multipart form data for updates in our API route setup
             await axios.post(`/api/admin/projects/${id}`, formData);
             router.push('/admin/projects');
-        } catch (err) {
+        } catch (err: unknown) {
             console.error(err);
             alert('Error updating project');
         } finally {
@@ -127,7 +135,7 @@ const ProjectEdit = () => {
                             <input
                                 type="file"
                                 className="form-control bg-transparent text-white border-secondary"
-                                onChange={e => setData({ ...data, image: e.target.files?.[0] })}
+                                onChange={e => setData({ ...data, image: e.target.files?.[0] || null })}
                             />
                             {existingImage && <div className="mt-2 small text-muted">Current: {existingImage}</div>}
                         </div>

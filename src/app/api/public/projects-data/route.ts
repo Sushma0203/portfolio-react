@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
-import prisma from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import { serializeBigInt } from '@/lib/serialize';
 
 export async function GET() {

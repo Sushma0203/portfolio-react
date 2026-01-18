@@ -4,12 +4,19 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 
+// Interface for Chatbot Rule
+interface ChatbotRule {
+    id: number | string;
+    question: string;
+    answer: string;
+}
+
 const ChatbotIndex = () => {
-    const [rules, setRules] = useState<any[]>([]);
+    const [rules, setRules] = useState<ChatbotRule[]>([]);
     const [loading, setLoading] = useState(true);
 
     const loadRules = () => {
-        setLoading(true);
+        // setLoading(true); // Removed to avoid synchronous update in effect
         axios.get('/api/admin/chatbot')
             .then(res => {
                 setRules(res.data.responses);
@@ -27,11 +34,15 @@ const ChatbotIndex = () => {
 
     const handleDelete = (id: string) => {
         if (confirm('Delete this rule?')) {
+            setLoading(true); // Set loading state here manually for deletion
             axios.delete(`/api/admin/chatbot/${id}`)
                 .then(() => {
                     loadRules();
                 })
-                .catch(() => alert('Error deleting rule'));
+                .catch(() => {
+                    alert('Error deleting rule');
+                    setLoading(false);
+                });
         }
     };
 

@@ -5,12 +5,17 @@ import Link from 'next/link';
 import Pagination from '@/components/Pagination';
 import axios from 'axios';
 
+interface MessageData {
+    data: any[];
+    links: any[];
+}
+
 const MessagesIndex = () => {
-    const [messages, setMessages] = useState<any>(null);
+    const [messages, setMessages] = useState<MessageData | null>(null);
     const [loading, setLoading] = useState(true);
 
     const loadMessages = (url = '/api/admin/messages') => {
-        setLoading(true);
+        // setLoading(true);
         axios.get(url)
             .then(res => {
                 setMessages(res.data);
@@ -28,11 +33,15 @@ const MessagesIndex = () => {
 
     const handleDelete = (id: string) => {
         if (confirm('Are you sure you want to delete this message?')) {
+            setLoading(true);
             axios.delete(`/api/admin/messages/${id}`)
                 .then(() => {
                     loadMessages();
                 })
-                .catch(() => alert('Error deleting message'));
+                .catch(() => {
+                    alert('Error deleting message');
+                    setLoading(false);
+                });
         }
     };
 

@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ['@prisma/client'],
+  output: "standalone",
+  reactStrictMode: true,
 };
 
 export default nextConfig;
