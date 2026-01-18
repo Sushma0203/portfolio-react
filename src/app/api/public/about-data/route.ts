@@ -6,6 +6,7 @@ import { serializeBigInt } from '@/lib/serialize';
 export async function GET() {
     try {
         const info = await prisma.about_infos.findFirst();
+        console.log('About Info fetched:', info ? 'Found in DB' : 'Not found in DB, using defaults');
 
         const defaultInfo = {
             career_objective: "To commit a professional job utilizing my field of study and gain work experience for future assiduous.",

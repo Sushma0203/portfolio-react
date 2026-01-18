@@ -6,6 +6,7 @@ import { serializeBigInt } from '@/lib/serialize';
 export async function GET() {
     try {
         const info = await prisma.home_infos.findFirst();
+        console.log('Home Info fetched:', info ? 'Found in DB' : 'Not found in DB, using defaults');
 
         const defaultInfo = {
             hero_title: "Hello, I'm Sushma Thapa",
