@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+
+
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { serializeBigInt } from '@/lib/serialize';
-import fs from 'fs/promises';
-import path from 'path';
+// import fs from 'fs/promises';
+// import path from 'path';
 
 export async function GET() {
     try {
@@ -50,15 +53,16 @@ export async function POST(request: NextRequest) {
         let profile_image = info.profile_image;
         if (image && image.size > 0) {
             if (info.profile_image) {
-                const oldPath = path.join(process.cwd(), 'public', info.profile_image);
-                try { await fs.unlink(oldPath); } catch (e) { }
+                // const oldPath = path.join(process.cwd(), 'public', info.profile_image);
+                // try { await fs.unlink(oldPath); } catch (e) { }
             }
 
-            const buffer = Buffer.from(await image.arrayBuffer());
+            // const buffer = Buffer.from(await image.arrayBuffer());
             const filename = Date.now() + '_' + image.name.replace(/\s+/g, '_');
-            const uploadDir = path.join(process.cwd(), 'public/img');
-            await fs.mkdir(uploadDir, { recursive: true });
-            await fs.writeFile(path.join(uploadDir, filename), buffer);
+            // const uploadDir = path.join(process.cwd(), 'public/img');
+            // await fs.mkdir(uploadDir, { recursive: true });
+            // const filePath = path.join(uploadDir, filename);
+            // await fs.writeFile(filePath, buffer);
             profile_image = `img/${filename}`;
         }
 

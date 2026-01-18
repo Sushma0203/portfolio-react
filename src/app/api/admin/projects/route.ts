@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+
+
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { serializeBigInt } from '@/lib/serialize';
-import fs from 'fs/promises';
-import path from 'path';
+// import fs from 'fs/promises';
+// import path from 'path';
 
 export async function GET(request: NextRequest) {
     try {
@@ -71,11 +74,11 @@ export async function POST(request: NextRequest) {
 
         let image_path = null;
         if (image && image.size > 0) {
-            const buffer = Buffer.from(await image.arrayBuffer());
+            // const buffer = Buffer.from(await image.arrayBuffer());
             const filename = Date.now() + '_' + image.name.replace(/\s+/g, '_');
-            const uploadDir = path.join(process.cwd(), 'public/img/project');
-            await fs.mkdir(uploadDir, { recursive: true });
-            await fs.writeFile(path.join(uploadDir, filename), buffer);
+            // const uploadDir = path.join(process.cwd(), 'public/img/project');
+            // await fs.mkdir(uploadDir, { recursive: true });
+            // await fs.writeFile(path.join(uploadDir, filename), buffer);
             image_path = `img/project/${filename}`;
         }
 

@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+
+
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
-import fs from 'fs/promises';
-import path from 'path';
+// import fs from 'fs/promises';
+// import path from 'path';
 
 export async function DELETE(
     request: NextRequest,
@@ -24,12 +27,14 @@ export async function DELETE(
         }
 
         // Delete file
+        /*
         const filePath = path.join(process.cwd(), 'public', gallery.image_path);
         try {
             await fs.unlink(filePath);
         } catch (err) {
             console.warn('Could not delete file from filesystem:', filePath);
         }
+        */
 
         // Delete from DB
         await prisma.galleries.delete({

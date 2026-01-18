@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+
+
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { serializeBigInt } from '@/lib/serialize';

@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+
+
 import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { serializeBigInt } from '@/lib/serialize';
-import fs from 'fs/promises';
-import path from 'path';
+// import fs from 'fs/promises';
+// import path from 'path';
 
 export async function GET(
     request: NextRequest,
@@ -68,15 +71,15 @@ export async function POST(
         if (image && image.size > 0) {
             // Delete old image
             if (existingProject.image_path) {
-                const oldPath = path.join(process.cwd(), 'public', existingProject.image_path);
-                try { await fs.unlink(oldPath); } catch (e) { }
+                // const oldPath = path.join(process.cwd(), 'public', existingProject.image_path);
+                // try { await fs.unlink(oldPath); } catch (e) { }
             }
 
-            const buffer = Buffer.from(await image.arrayBuffer());
+            // const buffer = Buffer.from(await image.arrayBuffer());
             const filename = Date.now() + '_' + image.name.replace(/\s+/g, '_');
-            const uploadDir = path.join(process.cwd(), 'public/img/project');
-            await fs.mkdir(uploadDir, { recursive: true });
-            await fs.writeFile(path.join(uploadDir, filename), buffer);
+            // const uploadDir = path.join(process.cwd(), 'public/img/project');
+            // await fs.mkdir(uploadDir, { recursive: true });
+            // await fs.writeFile(path.join(uploadDir, filename), buffer);
             image_path = `img/project/${filename}`;
         }
 
@@ -117,8 +120,8 @@ export async function DELETE(
         }
 
         if (project.image_path) {
-            const filePath = path.join(process.cwd(), 'public', project.image_path);
-            try { await fs.unlink(filePath); } catch (e) { }
+            // const filePath = path.join(process.cwd(), 'public', project.image_path);
+            // try { await fs.unlink(filePath); } catch (e) { }
         }
 
         await prisma.projects.delete({
